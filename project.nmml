@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="Adding Animation" package="io.nme.samples.addinganimation" version="1.0.0" company="NME" />
+	<app main="Main" path="Export" file="AddingAnimation" />
+
+	<window width="320" height="480" if="flash" />
+	<window width="320" height="480" if="html5" />
+	
+	<source path="Source" />
+	
+	<haxelib name="nme" />
+	<haxelib name="actuate" />
+	
+	<assets path="Assets" rename="assets" exclude="nme.svg" />
+	<icon path="Assets/nme.svg" />
+	
+</project>

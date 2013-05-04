@@ -1,0 +1,368 @@
+TAddingAnimation
+v5
+r1
+cCheck dependencies
+cCpResource /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/ResourceRules.plist build/Release-iphoneos/AddingAnimation.app/ResourceRules.plist
+cProcessInfoPlistFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Info.plist AddingAnimation/AddingAnimation-Info.plist
+cCpResource AddingAnimation/assets build/Release-iphoneos/AddingAnimation.app/assets
+cCopyPNGFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon.png AddingAnimation/Icon.png
+cCopyPNGFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon@2x.png AddingAnimation/Icon@2x.png
+cCopyPNGFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon-72.png AddingAnimation/Icon-72.png
+cCopyPNGFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon-72@2x.png AddingAnimation/Icon-72@2x.png
+cProcessPCH++ /var/folders/b5/_p8zgpzx16vdvw4qjhtwhn400000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/AddingAnimation-Prefix-gsyzzphdjfzbdqbazzpmcewtilsc/AddingAnimation-Prefix.pch.pth AddingAnimation/AddingAnimation-Prefix.pch normal armv7 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/Objects-normal/armv7/Main.o /Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Classes/Main.mm normal armv7 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/AddingAnimation normal armv7
+cGenerateDSYMFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app.dSYM /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/AddingAnimation
+cProcessProductPackaging "/Users/piga/Library/MobileDevice/Provisioning Profiles/03928B74-888B-40F2-B802-211EEAEB13E2.mobileprovision" /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/embedded.mobileprovision
+cProcessProductPackaging "/Users/piga/Library/MobileDevice/Provisioning Profiles/03928B74-888B-40F2-B802-211EEAEB13E2.mobileprovision" /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/embedded.mobileprovision
+cTouch /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app
+cProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/Entitlements.plist /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation.xcent
+cCodeSign /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app
+cValidate /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk
+c0000000051805E240000000000000110
+t1367367204
+s272
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/Entitlements.plist
+c000000005142915100000000000001A7
+t1363317073
+s423
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/ResourceRules.plist
+c000000005142915100000000000001E5
+t1363317073
+s485
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AVFoundation.framework/AVFoundation
+c0000000051429154000000000036CDF0
+t1363317076
+s3591664
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AudioToolbox.framework/AudioToolbox
+c000000005142915600000000006B1F40
+t1363317078
+s7020352
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/CoreAudio.framework/CoreAudio
+c000000005142915400000000000FE270
+t1363317076
+s1041008
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c00000000514291550000000000322700
+t1363317077
+s3286784
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c0000000051429158000000000062AD10
+t1363317080
+s6466832
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000005142915600000000000015F7
+t1363317078
+s5623
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/OpenAL.framework/OpenAL
+c0000000051429158000000000005C570
+t1363317080
+s378224
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/OpenGLES.framework/OpenGLES
+c00000000514291580000000000024190
+t1363317080
+s147856
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+c000000005142915900000000003596B0
+t1363317081
+s3511984
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c00000000514291590000000000000E8D
+t1363317081
+s3725
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000005142915E00000000011BCDF0
+t1363317086
+s18599408
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/Availability.h
+c00000000514291640000000000001B73
+t1363317092
+s7027
+
+N/Users/piga/Library/MobileDevice/Provisioning Profiles/03928B74-888B-40F2-B802-211EEAEB13E2.mobileprovision
+c000000004FE2025B00000000000027A2
+t1340211803
+s10146
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/AddingAnimation-Prefix.pch
+c000000005184E399000000000000014D
+t1367663513
+s333
+i<Availability.h>
+i<UIKit/UIKit.h>
+i<Foundation/Foundation.h>
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Classes/Main.mm
+c000000005184E3E70000000000000357
+t1367663591
+s855
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon-72.png
+c000000005184E3990000000000000324
+t1367663513
+s804
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon-72@2x.png
+c000000005184E39900000000000004E0
+t1367663513
+s1248
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon.png
+c000000005184E399000000000000024C
+t1367663513
+s588
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon@2x.png
+c000000005184E39900000000000003A4
+t1367663513
+s932
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/assets
+c000000005184E39A0000000000000066
+t1367663514
+s102
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation.xcent
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/Objects-normal/armv7/AddingAnimation.LinkFileList
+c000000005184E3E80000000000000093
+t1367663592
+s147
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/Objects-normal/armv7/Main.o
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/com.apple.build-tools.platform.validate
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app.dSYM
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/AddingAnimation
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon-72.png
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon-72@2x.png
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon.png
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon@2x.png
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Info.plist
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/PkgInfo
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/ResourceRules.plist
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/assets
+t2
+s0
+
+N/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/embedded.mobileprovision
+t2
+s0
+
+N/var/folders/b5/_p8zgpzx16vdvw4qjhtwhn400000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/AddingAnimation-Prefix-gsyzzphdjfzbdqbazzpmcewtilsc/AddingAnimation-Prefix.pch.pth
+t2
+s0
+
+NAddingAnimation/AddingAnimation-Info.plist
+c000000005184E399000000000000067D
+t1367663513
+s1661
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesb7626f681b35b741^6e6d71681b35b741^---0#1#0#--18"Check dependencies36"674ECA1D-4526-463B-8943-00C80BAEA2B8-
+
+CCodeSign /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app
+s389356393.551431
+e389356394.092661
+r1
+xCodeSign
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection51"CodeSign build/Release-iphoneos/AddingAnimation.appa94c8d691b35b741^2387186a1b35b741^---0#0#0#-19%DVTDocumentLocation2@111"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/0000000000000000^1126"CodeSign build/Release-iphoneos/AddingAnimation.app    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv CODESIGN_ALLOCATE /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /usr/bin/codesign --force --sign b71e5249f51ad6e35a1f033266057eca2355d604 --resource-rules=/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/ResourceRules.plist --entitlements /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation.xcent /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app36"B56AECE8-A9FF-45C6-AF75-3308557E2C85-
+
+CCompileC build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/Objects-normal/armv7/Main.o /Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Classes/Main.mm normal armv7 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s389356392.681313
+e389356392.748085
+r1
+xCompileC
+xbuild/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/Objects-normal/armv7/Main.o
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Classes/Main.mm
+xnormal
+xarmv7
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection91"Compile /Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Classes/Main.mm0398ae681b35b741^b282bf681b35b741^---0#0#0#-19%DVTDocumentLocation2@99"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Classes/Main.mm0000000000000000^3841"CompileC build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/Objects-normal/armv7/Main.o AddingAnimation/Classes/Main.mm normal armv7 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch armv7 -fmessage-length=0 -std=gnu++11 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion -miphoneos-version-min=5 -iquote /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation-generated-files.hmap -I/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation-own-target-headers.hmap -I/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation-all-target-headers.hmap -iquote /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation-project-headers.hmap -I/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/DerivedSources/armv7 -I/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/DerivedSources -F/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/b5/_p8zgpzx16vdvw4qjhtwhn400000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/AddingAnimation-Prefix-gsyzzphdjfzbdqbazzpmcewtilsc/AddingAnimation-Prefix.pch -MMD -MT dependencies -MF /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/Objects-normal/armv7/Main.d --serialize-diagnostics /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/Objects-normal/armv7/Main.dia -c /Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Classes/Main.mm -o /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/Objects-normal/armv7/Main.o36"FE074841-7478-4BB2-BC38-D618CB1642EA-
+
+CCopyPNGFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon-72.png AddingAnimation/Icon-72.png
+s389356392.586422
+e389356392.638557
+r1
+xCopyPNGFile
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon-72.png
+xAddingAnimation/Icon-72.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"CopyPNGFile build/Release-iphoneos/AddingAnimation.app/Icon-72.png AddingAnimation/Icon-72.pngc24d96681b35b741^8884a3681b35b741^---0#0#0#-19%DVTDocumentLocation2@95"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon-72.png0000000000000000^873"CopyPNGFile build/Release-iphoneos/AddingAnimation.app/Icon-72.png AddingAnimation/Icon-72.png    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon-72.png /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon-72.png36"469EE1F8-FBA8-4BEA-8E6E-5B63F4AFF3CD-
+
+CCopyPNGFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon-72@2x.png AddingAnimation/Icon-72@2x.png
+s389356392.587967
+e389356392.640970
+r1
+xCopyPNGFile
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon-72@2x.png
+xAddingAnimation/Icon-72@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection100"CopyPNGFile build/Release-iphoneos/AddingAnimation.app/Icon-72@2x.png AddingAnimation/Icon-72@2x.png1aa296681b35b741^be16a4681b35b741^---0#0#0#-19%DVTDocumentLocation2@98"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon-72@2x.png0000000000000000^893"CopyPNGFile "build/Release-iphoneos/AddingAnimation.app/Icon-72@2x.png" "AddingAnimation/Icon-72@2x.png"    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon-72@2x.png" "/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon-72@2x.png"36"EF221020-07AF-498B-AD2B-A828D89EC666-
+
+CCopyPNGFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon.png AddingAnimation/Icon.png
+s389356392.474134
+e389356392.586726
+r1
+xCopyPNGFile
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon.png
+xAddingAnimation/Icon.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection88"CopyPNGFile build/Release-iphoneos/AddingAnimation.app/Icon.png AddingAnimation/Icon.png598979681b35b741^323c96681b35b741^---0#0#0#-19%DVTDocumentLocation2@92"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon.png0000000000000000^861"CopyPNGFile build/Release-iphoneos/AddingAnimation.app/Icon.png AddingAnimation/Icon.png    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" /Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon.png /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon.png36"287B2607-8946-4CEB-A6D1-6C09287119B5-
+
+CCopyPNGFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon@2x.png AddingAnimation/Icon@2x.png
+s389356392.479340
+e389356392.585114
+r1
+xCopyPNGFile
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon@2x.png
+xAddingAnimation/Icon@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"CopyPNGFile build/Release-iphoneos/AddingAnimation.app/Icon@2x.png AddingAnimation/Icon@2x.pngfdda7a681b35b741^6fd995681b35b741^---0#0#0#-19%DVTDocumentLocation2@95"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon@2x.png0000000000000000^881"CopyPNGFile "build/Release-iphoneos/AddingAnimation.app/Icon@2x.png" "AddingAnimation/Icon@2x.png"    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/copypng -compress "" "/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/Icon@2x.png" "/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Icon@2x.png"36"D1F156C6-1D9E-4F45-AF23-1C2AD01B2580-
+
+CCpResource /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/ResourceRules.plist build/Release-iphoneos/AddingAnimation.app/ResourceRules.plist
+s389356392.457204
+e389356392.463608
+r1
+xCpResource
+x/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/ResourceRules.plist
+xbuild/Release-iphoneos/AddingAnimation.app/ResourceRules.plist
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection67"Copy build/Release-iphoneos/AddingAnimation.app/ResourceRules.pliste83275681b35b741^dbc376681b35b741^---0#0#0#-19%DVTDocumentLocation2@130"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/ResourceRules.plist000000000080d041^1128"CpResource /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/ResourceRules.plist build/Release-iphoneos/AddingAnimation.app/ResourceRules.plist    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/ResourceRules.plist /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app36"2B2A55B7-9BBF-48C6-B42E-A9A0ADCFF268-
+
+CCpResource AddingAnimation/assets build/Release-iphoneos/AddingAnimation.app/assets
+s389356392.473527
+e389356392.476820
+r1
+xCpResource
+xAddingAnimation/assets
+xbuild/Release-iphoneos/AddingAnimation.app/assets
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection54"Copy build/Release-iphoneos/AddingAnimation.app/assets8e5a79681b35b741^931a7a681b35b741^---0#0#0#-19%DVTDocumentLocation2@117"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/assets000000000080d041^969"CpResource AddingAnimation/assets build/Release-iphoneos/AddingAnimation.app/assets    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/assets /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app36"EC11703C-B78B-460C-98FD-4E946D5D3B0C-
+
+CGenerateDSYMFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app.dSYM /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/AddingAnimation
+s389356393.373890
+e389356393.487034
+r1
+xGenerateDSYMFile
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app.dSYM
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/AddingAnimation
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"Generate /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app.dSYM55d95f691b35b741^4faf7c691b35b741^---0#0#0#-19%DVTDocumentLocation2@115"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app.dSYM000000000080d041^915"GenerateDSYMFile build/Release-iphoneos/AddingAnimation.app.dSYM build/Release-iphoneos/AddingAnimation.app/AddingAnimation    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/AddingAnimation -o /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app.dSYM36"9303F22B-49FC-44AC-A8FB-4EBECE192769-
+
+CLd /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/AddingAnimation normal armv7
+s389356392.755763
+e389356393.367541
+r1
+xLd
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/AddingAnimation
+xnormal
+xarmv7
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection115"Link /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/AddingAnimation80b6c1681b35b741^b1175e691b35b741^---0#0#0#--1641"Ld build/Release-iphoneos/AddingAnimation.app/AddingAnimation normal armv7    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv IPHONEOS_DEPLOYMENT_TARGET 5    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch armv7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -L/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos -L/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/lib/armv7 -F/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos -filelist /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/Objects-normal/armv7/AddingAnimation.LinkFileList -dead_strip -lstd -lregexp -lzlib -lnme -lcurl_ssl -lpng -ljpeg -lApplicationMain -miphoneos-version-min=5 -framework UIKit -framework OpenAL -framework OpenGLES -framework QuartzCore -framework CoreAudio -framework CoreGraphics -framework AudioToolbox -framework AVFoundation -framework Foundation -o /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/AddingAnimation36"E05686D1-FB53-4A85-A018-270B00883256-
+
+CProcessInfoPlistFile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Info.plist AddingAnimation/AddingAnimation-Info.plist
+s389356392.457801
+e389356392.465385
+r1
+xProcessInfoPlistFile
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Info.plist
+xAddingAnimation/AddingAnimation-Info.plist
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Process AddingAnimation/AddingAnimation-Info.plist405175681b35b741^cd3e77681b35b741^---0#0#0#-19%DVTDocumentLocation2@110"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/AddingAnimation-Info.plist0000000000000000^1080"ProcessInfoPlistFile build/Release-iphoneos/AddingAnimation.app/Info.plist AddingAnimation/AddingAnimation-Info.plist    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-infoPlistUtility AddingAnimation/AddingAnimation-Info.plist -genpkginfo /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -resourcerulesfile /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/ResourceRules.plist -o /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/Info.plist36"2E5C3A98-26BC-4EA2-8E45-4022312B3207-
+
+CProcessPCH++ /var/folders/b5/_p8zgpzx16vdvw4qjhtwhn400000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/AddingAnimation-Prefix-gsyzzphdjfzbdqbazzpmcewtilsc/AddingAnimation-Prefix.pch.pth AddingAnimation/AddingAnimation-Prefix.pch normal armv7 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s389356392.649903
+e389356392.673990
+r1
+xProcessPCH++
+x/var/folders/b5/_p8zgpzx16vdvw4qjhtwhn400000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/AddingAnimation-Prefix-gsyzzphdjfzbdqbazzpmcewtilsc/AddingAnimation-Prefix.pch.pth
+xAddingAnimation/AddingAnimation-Prefix.pch
+xnormal
+xarmv7
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Precompile AddingAnimation/AddingAnimation-Prefix.pchc58ea6681b35b741^a29cac681b35b741^---0#0#0#-19%DVTDocumentLocation2@110"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/AddingAnimation-Prefix.pch0000000000000000^3860"ProcessPCH++ /var/folders/b5/_p8zgpzx16vdvw4qjhtwhn400000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/AddingAnimation-Prefix-gsyzzphdjfzbdqbazzpmcewtilsc/AddingAnimation-Prefix.pch.pth AddingAnimation/AddingAnimation-Prefix.pch normal armv7 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++-header -arch armv7 -fmessage-length=0 -std=gnu++11 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion -miphoneos-version-min=5 -iquote /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation-generated-files.hmap -I/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation-own-target-headers.hmap -I/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation-all-target-headers.hmap -iquote /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation-project-headers.hmap -I/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/DerivedSources/armv7 -I/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/DerivedSources -F/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos -DNS_BLOCK_ASSERTIONS=1 --serialize-diagnostics /var/folders/b5/_p8zgpzx16vdvw4qjhtwhn400000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/AddingAnimation-Prefix-gsyzzphdjfzbdqbazzpmcewtilsc/AddingAnimation-Prefix.pch.dia -c /Users/piga/develop/haxe/AddingAnimation/Export/ios/AddingAnimation/AddingAnimation-Prefix.pch -o /var/folders/b5/_p8zgpzx16vdvw4qjhtwhn400000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/AddingAnimation-Prefix-gsyzzphdjfzbdqbazzpmcewtilsc/AddingAnimation-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/b5/_p8zgpzx16vdvw4qjhtwhn400000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/AddingAnimation-Prefix-gsyzzphdjfzbdqbazzpmcewtilsc/AddingAnimation-Prefix.pch.d36"ABC11856-240D-4258-A60D-762356BE9A6B-
+
+CProcessProductPackaging "/Users/piga/Library/MobileDevice/Provisioning Profiles/03928B74-888B-40F2-B802-211EEAEB13E2.mobileprovision" /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/embedded.mobileprovision
+s389356393.510435
+e389356393.514655
+r1
+xProcessProductPackaging
+x/Users/piga/Library/MobileDevice/Provisioning Profiles/03928B74-888B-40F2-B802-211EEAEB13E2.mobileprovision
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/embedded.mobileprovision
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection201"ProcessProductPackaging "/Users/piga/Library/MobileDevice/Provisioning Profiles/03928B74-888B-40F2-B802-211EEAEB13E2.mobileprovision" build/Release-iphoneos/AddingAnimation.app/embedded.mobileprovision52d782691b35b741^2bc083691b35b741^---0#0#0#-19%DVTDocumentLocation2@135"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/embedded.mobileprovision0000000000000000^948"ProcessProductPackaging "/Users/piga/Library/MobileDevice/Provisioning Profiles/03928B74-888B-40F2-B802-211EEAEB13E2.mobileprovision" build/Release-iphoneos/AddingAnimation.app/embedded.mobileprovision    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-productPackagingUtility "/Users/piga/Library/MobileDevice/Provisioning Profiles/03928B74-888B-40F2-B802-211EEAEB13E2.mobileprovision" -o /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/embedded.mobileprovision36"FD0F0DF8-828E-4FB3-88A7-C186596E6096-
+
+CProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/Entitlements.plist /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation.xcent
+s389356393.539305
+e389356393.543156
+r1
+xProcessProductPackaging
+x/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/Entitlements.plist
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation.xcent
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection233"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/Entitlements.plist build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation.xcentec308a691b35b741^dd0c8b691b35b741^---0#0#0#-19%DVTDocumentLocation2@156"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation.xcent000000000080d041^1038"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/Entitlements.plist build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation.xcent    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-productPackagingUtility /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/Entitlements.plist -entitlements -format xml -o /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/AddingAnimation.build/Release-iphoneos/AddingAnimation.build/AddingAnimation.xcent36"87A7B10B-138F-436C-BDAC-6521D06E2FAC-
+
+CTouch /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app
+s389356393.524397
+e389356393.531199
+r1
+xTouch
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection100"Touch /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app465e86691b35b741^fcfc87691b35b741^---0#0#0#--643"Touch build/Release-iphoneos/AddingAnimation.app    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /usr/bin/touch -c /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app36"252A6DB8-3E70-4FFD-90C2-5A08C067D533-
+
+CValidate /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app
+s389356394.100860
+e389356394.939372
+r1
+xValidate
+x/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection51"Validate build/Release-iphoneos/AddingAnimation.app84f3196a1b35b741^5986f06a1b35b741^---0#0#0#-19%DVTDocumentLocation2@111"file://localhost/Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app/0000000000000000^787"Validate build/Release-iphoneos/AddingAnimation.app    cd /Users/piga/develop/haxe/AddingAnimation/Export/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/Users/piga/.rvm/gems/ruby-1.9.2-p290/bin:/Users/piga/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/piga/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/piga/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    setenv PRODUCT_TYPE com.apple.product-type.application    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/Validation /Users/piga/develop/haxe/AddingAnimation/Export/ios/build/Release-iphoneos/AddingAnimation.app36"3A7F9C3A-33CA-4A0D-8FDE-E51A04FC1F4A-
+
