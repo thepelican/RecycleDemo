@@ -1,4 +1,4 @@
-import com.eclecticdesignstudio.motion.easing.Elastic;
+import com.eclecticdesignstudio.motion.easing.Linear;
 import com.eclecticdesignstudio.motion.Actuate;
 import nme.display.Bitmap;
 import nme.display.Sprite;
@@ -76,11 +76,14 @@ class Main extends Sprite {
 		trace('Touch end');
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, onTouchUp);
 
+		var originalScale = .2;
+
 		if(event.stageY < startY) {
-			Actuate.tween(ballContainer, 3, {x: event.stageX});
-			Actuate.tween(ballContainer, 2, {y: top});
-			Actuate.tween(ballContainer, 1, {y: (top * 2)}, false).delay(2);
+			Actuate.tween(ballContainer, 1, {x: event.stageX}).ease(Linear.easeNone);
+			Actuate.tween(ballContainer, .75, {y: top}).ease(Linear.easeNone);
+			Actuate.tween(ballContainer, .25, {y: (top * 2)}, false).delay(.75).ease(Linear.easeNone);
+			Actuate.tween(ballContainer, 1, {scaleX: originalScale / 3, scaleY: originalScale / 3}).ease(Linear.easeNone);
 		}
 	}
-	
+
 }
