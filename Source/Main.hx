@@ -82,6 +82,7 @@ class Main extends Sprite {
 			Actuate.tween(ballContainer, 1, {x: event.stageX}).ease(Linear.easeNone);
 			Actuate.tween(ballContainer, .75, {y: top}).ease(Linear.easeNone);
 			Actuate.tween(ballContainer, .25, {y: (top * 2)}, false).delay(.75).ease(Linear.easeNone);
+			//fai la roba che puzza e non melo dici
 			Actuate.tween(ballContainer, 1, {scaleX: originalScale / 3, scaleY: originalScale / 3}).ease(Linear.easeNone);
 		}
 	}
