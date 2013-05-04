@@ -26,7 +26,7 @@ class Main extends Sprite {
 		background.graphics.endFill();
 
 		addChild(background);
-
+ 
 		// ball and container
 
 		ballContainer = new Sprite();
