@@ -1,4 +1,12 @@
 import com.eclecticdesignstudio.motion.easing.Linear;
+import com.eclecticdesignstudio.motion.easing.Cubic;
+import com.eclecticdesignstudio.motion.easing.Elastic;
+import com.eclecticdesignstudio.motion.easing.Expo;
+import com.eclecticdesignstudio.motion.easing.Quad;
+import com.eclecticdesignstudio.motion.easing.Quart;
+import com.eclecticdesignstudio.motion.easing.Quint;
+import com.eclecticdesignstudio.motion.easing.Sine;
+
 import com.eclecticdesignstudio.motion.Actuate;
 import nme.display.Bitmap;
 import nme.display.Sprite;
@@ -79,11 +87,11 @@ class Main extends Sprite {
 		var originalScale = .2;
 
 		if(event.stageY < startY) {
-			Actuate.tween(ballContainer, 1, {x: event.stageX}).ease(Linear.easeNone);
-			Actuate.tween(ballContainer, .75, {y: top}).ease(Linear.easeNone);
-			Actuate.tween(ballContainer, .25, {y: (top * 2)}, false).delay(.75).ease(Linear.easeNone);
+			Actuate.tween(ballContainer, 1.5, {x: event.stageX}).ease(Quad.easeInOut);
+			Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
+			Actuate.tween(ballContainer, .50, {y: (top * 2)}, false).delay(1.0).ease(Quad.easeIn);
 			//fai la roba che puzza e non melo dici
-			Actuate.tween(ballContainer, 1, {scaleX: originalScale / 3, scaleY: originalScale / 3}).ease(Linear.easeNone);
+			Actuate.tween(ballContainer, 1.5, {scaleX: originalScale / 3, scaleY: originalScale / 3}).ease(Linear.easeNone);
 		}
 	}
 
