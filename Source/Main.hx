@@ -17,8 +17,8 @@ import nme.Assets;
 import nme.Lib;
 import nme.events.MouseEvent;
 import nme.events.Event;
-import nme.events.Event;
 import haxe.Timer;
+
 class Main extends Sprite {
 
 	var isDragging = false;
@@ -33,6 +33,9 @@ class Main extends Sprite {
 	var falling:Bool;
 	var previousY:Float;
 	//physics
+
+	//view components
+	var scrollBar:ItemScrollBar;
 
 	public function new () {
 
@@ -70,6 +73,13 @@ class Main extends Sprite {
 		ballContainer.scaleX = ballContainer.scaleY = .2;
 
 		addChild(ballContainer);
+
+		// bottom scrollbar
+
+		scrollBar = new ItemScrollBar();
+		scrollBar.setSize(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight / 6);
+		scrollBar.y = Lib.current.stage.stageHeight - scrollBar.height;
+		addChild(scrollBar);
 
 		// items container
 		// var bar = new Sprite();
