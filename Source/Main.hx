@@ -131,12 +131,12 @@ class Main extends Sprite {
 					// left rebound.. touch the left  bordr and goes left
 
 				trace('left on left side ');
-				bouncedTween(hitTest,0);
+				bouncedTweenOutside(hitTest,0);
 
 
 			} else if (hitTest > leftEdge && hitTest < leftEdge + objectToThrowHalfWidth) {
 				trace('left on right side');
-				bouncedTween(hitTest,0);
+				bouncedTweenInside(hitTest,0);
 
 
 			} else if (hitTest > leftEdge + objectToThrowHalfWidth && hitTest < rightEdge - objectToThrowHalfWidth){
@@ -154,12 +154,12 @@ class Main extends Sprite {
 			} else if (hitTest < rightEdge + objectToThrowHalfWidth && hitTest > rightEdge) {
 					// left rebound.. touch the left  bordr and goes left
 				trace('right on right side ');
-				bouncedTween(hitTest,0);
+				bouncedTweenOutside(hitTest,0);
 
 
 			} else if (hitTest < rightEdge && hitTest > rightEdge - objectToThrowHalfWidth) {
 					trace('right in left side');
-					bouncedTween(hitTest,0);
+					bouncedTweenInside(hitTest,0);
 			}
 
 
@@ -189,28 +189,72 @@ class Main extends Sprite {
 
 	}
 
-	function bouncedTween(offest:Float, wind:Float){
+	function bouncedTweenOutside(offest:Float, wind:Float){
 
-		var offestFirstBounce:Float =  (Lib.current.stage.stageHeight / 12 * 4) - top;
+		var offestFirstBounce:Float = (Lib.current.stage.stageHeight / 12 * 4) - top- objectToThrowHalfWidth;
 		Actuate.tween(ballContainer, 1.25, {x: offest}).ease(Linear.easeNone);
 		Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
 
-		 Actuate.tween(ballContainer, .25, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
+		if (offest < Lib.current.stage.stageWidth / 2) {
+		 	
+		 	Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
 
-			 Actuate.tween(ballContainer, .35, {y: horizon - ((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
-			 Actuate.tween(ballContainer, 1.25, {x: offest - 20}).ease(Linear.easeNone);
+				 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
+				 Actuate.tween(ballContainer, .45, {x: offest - (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
 
-		 });
+			 });
 
+			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
+			});
 
-			// // //fai la roba che puzza e non melo dici
-		Actuate.tween(ballContainer, 1.60, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone);
-		// .onComplete(function() {
+		} else{
+			Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
 
-		// 	var path = new MotionPath ().bezier (ballContainer.x, ballContainer.y , ballContainer.x, ballContainer.y - 30,0);
-  //                                               //x,y, offestx, offsety, strenght?
-		// 	Actuate.motionPath (ballContainer, 0.5, { x: path.x, y: path.y } ).ease (Quad.easeOut);
-		// });
+				 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
+				 Actuate.tween(ballContainer, .45, {x: offest + (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
+
+			 });
+
+			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
+			});
+		}
+	}
+
+	function bouncedTweenInside(offest:Float, wind:Float){
+
+		var offestFirstBounce:Float = (Lib.current.stage.stageHeight / 12 * 4) - top- objectToThrowHalfWidth;
+		Actuate.tween(ballContainer, 1.25, {x: offest}).ease(Linear.easeNone);
+		Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
+
+		if (offest < Lib.current.stage.stageWidth / 2) {
+		 	
+		Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
+
+				 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
+				 Actuate.tween(ballContainer, .45, {x: offest + (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
+
+			 });
+
+			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
+			});
+
+		} else{
+			Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
+
+				 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
+				 Actuate.tween(ballContainer, .45, {x: offest - (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
+
+			 });
+
+			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
+			});
+		}
+		Actuate.tween(ballContainer, .15, {alpha: .0}).delay(1.80).ease(Linear.easeNone);
+
 	}
 
 	function onEnterFrame(event) {
