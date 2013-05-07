@@ -26,12 +26,13 @@ class Main extends Sprite {
 	var startY:Float;
 	var ballContainer:Sprite;
 	var top:Float;
-
+	var objectToThrowHalfWidth:Float;
 	var horizon:Float;
 	var scaleFactor:Float;
 	var inTheBin:Bool;
 	var falling:Bool;
 	var previousY:Float;
+	var originalScale:Float;
 	//physics
 
 	//view components
@@ -58,20 +59,20 @@ class Main extends Sprite {
 		var ball = new Bitmap(Assets.getBitmapData("assets/nme.png"));
 		ball.x = - ball.width / 2;
 		ball.y = - ball.height / 2;
-
 		startX = Lib.current.stage.stageWidth / 2;
 		startY = Lib.current.stage.stageHeight / 12 * 8;
 		top = Lib.current.stage.stageHeight / 6;
 		horizon  =  Lib.current.stage.stageHeight / 12 * 5;
 		previousY =  Lib.current.stage.stageHeight ;
 		drawBucket();
-
+		originalScale = .2;
 		scaleFactor = 3;
 		ballContainer.addChild(ball);
 		ballContainer.x = startX;
 		ballContainer.y = startY;
 		ballContainer.scaleX = ballContainer.scaleY = .2;
-
+		objectToThrowHalfWidth = ballContainer.width/2;
+		objectToThrowHalfWidth = objectToThrowHalfWidth/scaleFactor;
 		addChild(ballContainer);
 
 		// bottom scrollbar
@@ -109,19 +110,59 @@ class Main extends Sprite {
 		trace('Touch end');
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, onTouchUp);
 
-		var originalScale = .2;
+
 
 		if(event.stageY < startY) {
-			Actuate.tween(ballContainer, 1.5, {x: event.stageX}).ease(Linear.easeNone);
-			Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
-			Actuate.tween(ballContainer, .50, {y: horizon - ((ballContainer.height/ 2) / scaleFactor)}, false).delay(1.0).ease(Quad.easeIn);
-			// // //fai la roba che puzza e non melo dici
-			Actuate.tween(ballContainer, 1.50, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
-				
-				var path = new MotionPath ().bezier (ballContainer.x, ballContainer.y , ballContainer.x, ballContainer.y - 30,0);
-                                                //x,y, offestx, offsety, strenght?
-				Actuate.motionPath (ballContainer, 0.5, { x: path.x, y: path.y } ).ease (Quad.easeOut);
-			});
+			//Lib.current.stage.stageWidth / 21 * 9    FIRST SIDE BIN
+		var leftEdge:Float = Lib.current.stage.stageWidth / 21 * 9;
+		var rightEdge:Float = Lib.current.stage.stageWidth / 21 * 12;
+
+			//Lib.current.stage.stageWidth / 21 * 12   SECOND SIDE BIN
+			var hitTest:Int;
+			hitTest = event.stageX;
+			 trace('' + hitTest +' + ' +objectToThrowHalfWidth+ ' | '+ leftEdge + ' | '+ rightEdge);
+
+			 if (hitTest < (leftEdge - objectToThrowHalfWidth)) {
+				// left rebound.. goes to left
+				trace('left out');
+				normalTweenPlusWind(hitTest, 0);
+
+			} else if (hitTest > leftEdge - objectToThrowHalfWidth && hitTest < leftEdge) {
+					// left rebound.. touch the left  bordr and goes left
+
+				trace('left on left side ');
+				bouncedTween(hitTest,0);
+
+
+			} else if (hitTest > leftEdge && hitTest < leftEdge + objectToThrowHalfWidth) {
+				trace('left on right side');
+				bouncedTween(hitTest,0);
+
+
+			} else if (hitTest > leftEdge + objectToThrowHalfWidth && hitTest < rightEdge - objectToThrowHalfWidth){
+						
+				trace('IN THE MIDDLE');
+			
+				normalTweenPlusWind(hitTest, 0);
+
+			} else if (hitTest > (rightEdge + objectToThrowHalfWidth)) {
+				// left rebound.. goes to left
+				trace('rightEdge out');
+				normalTweenPlusWind(hitTest, 0);
+
+
+			} else if (hitTest < rightEdge + objectToThrowHalfWidth && hitTest > rightEdge) {
+					// left rebound.. touch the left  bordr and goes left
+				trace('right on right side ');
+				bouncedTween(hitTest,0);
+
+
+			} else if (hitTest < rightEdge && hitTest > rightEdge - objectToThrowHalfWidth) {
+					trace('right in left side');
+					bouncedTween(hitTest,0);
+			}
+
+
 
 			// var path = new MotionPath ().bezier (300, 100, 300, -400, 2.5);//.line (450, 25); //!!!!!it bounces
 			// var path = new MotionPath ().bezier (event.stageX, horizon - ((ballContainer.height / 2) / scaleFactor) , Lib.stage.stageWidth / 2, 0, 0);
@@ -132,6 +173,44 @@ class Main extends Sprite {
 			// 	Timer.delay(callback(reset), 2000);
 			// });
 		}
+	}
+
+	function normalTweenPlusWind(offest:Float, wind:Float){
+
+		Actuate.tween(ballContainer, 1.5, {x: offest}).ease(Linear.easeNone);
+		Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
+		Actuate.tween(ballContainer, .50, {y: horizon - ((ballContainer.height/ 2) / scaleFactor)}, false).delay(1).ease(Quad.easeIn);
+			// // //fai la roba che puzza e non melo dici
+		Actuate.tween(ballContainer, 1.50, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
+				var path = new MotionPath ().bezier (ballContainer.x, ballContainer.y , ballContainer.x, ballContainer.y - 30,0);
+                                                //x,y, offestx, offsety, strenght?
+		Actuate.motionPath (ballContainer, 0.5, { x: path.x, y: path.y } ).ease (Quad.easeOut);
+		});
+
+	}
+
+	function bouncedTween(offest:Float, wind:Float){
+
+		var offestFirstBounce:Float =  (Lib.current.stage.stageHeight / 12 * 4) - top;
+		Actuate.tween(ballContainer, 1.25, {x: offest}).ease(Linear.easeNone);
+		Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
+
+		 Actuate.tween(ballContainer, .25, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
+
+			 Actuate.tween(ballContainer, .35, {y: horizon - ((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
+			 Actuate.tween(ballContainer, 1.25, {x: offest - 20}).ease(Linear.easeNone);
+
+		 });
+
+
+			// // //fai la roba che puzza e non melo dici
+		Actuate.tween(ballContainer, 1.60, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone);
+		// .onComplete(function() {
+
+		// 	var path = new MotionPath ().bezier (ballContainer.x, ballContainer.y , ballContainer.x, ballContainer.y - 30,0);
+  //                                               //x,y, offestx, offsety, strenght?
+		// 	Actuate.motionPath (ballContainer, 0.5, { x: path.x, y: path.y } ).ease (Quad.easeOut);
+		// });
 	}
 
 	function onEnterFrame(event) {
@@ -160,11 +239,11 @@ class Main extends Sprite {
 		graphics.moveTo(0, horizon);
 		graphics.lineTo(Lib.current.stage.stageWidth, horizon);
 
-		graphics.moveTo(Lib.current.stage.stageWidth / 3, horizon);
-		graphics.lineTo(Lib.current.stage.stageWidth / 3, Lib.current.stage.stageHeight / 12 * 4);
+		graphics.moveTo(Lib.current.stage.stageWidth / 21 * 9, horizon);
+		graphics.lineTo(Lib.current.stage.stageWidth / 21 * 9, Lib.current.stage.stageHeight / 12 * 4);
 
-		graphics.moveTo(Lib.current.stage.stageWidth / 3 * 2, horizon);
-		graphics.lineTo(Lib.current.stage.stageWidth / 3 * 2, Lib.current.stage.stageHeight / 12 * 4);
+		graphics.moveTo(Lib.current.stage.stageWidth / 21 * 12, horizon);
+		graphics.lineTo(Lib.current.stage.stageWidth / 21 * 12, Lib.current.stage.stageHeight / 12 * 4);
 	}
 	
 
