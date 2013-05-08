@@ -39,7 +39,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>24</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -48,7 +48,7 @@
 	<true/>
 	
 	<key>UISupportedInterfaceOrientations</key>
-	<array><string>UIInterfaceOrientationLandscapeLeft</string><string>UIInterfaceOrientationLandscapeRight</string><string>UIInterfaceOrientationPortrait</string><string>UIInterfaceOrientationPortraitUpsideDown</string></array>
+	<array><string>UIInterfaceOrientationPortrait</string><string>UIInterfaceOrientationPortraitUpsideDown</string></array>
 	<key>UIRequiredDeviceCapabilities</key>
    	<dict>
 		

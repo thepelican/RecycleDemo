@@ -7,5 +7,5 @@
 -D web
 -swf-version 11
 -swf9 Export/flash/bin/AddingAnimation.swf
--swf-header 320:480:30:FFFFFF
+-swf-header 320:480:60:FFFFFF
 -cp Export/flash/haxe

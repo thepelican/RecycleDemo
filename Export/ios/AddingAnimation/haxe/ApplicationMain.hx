@@ -9,7 +9,11 @@ class ApplicationMain
 		nme.display.Stage.shouldRotateInterface = function(orientation:Int):Bool
 		{
 			
-			return true;
+			if (orientation == nme.display.Stage.OrientationPortrait || orientation == nme.display.Stage.OrientationPortraitUpsideDown)
+			{
+				return true;
+			}
+			return false;
 			
 		}
 		
@@ -25,14 +29,14 @@ class ApplicationMain
 				initialize ();
 			},
 			0, 0,
-			30,
+			60,
 			16777215,
 			(true ? nme.Lib.HARDWARE : 0) |
 			(false ? nme.Lib.ALLOW_SHADERS : 0) |
 			(false ? nme.Lib.REQUIRE_SHADERS : 0) |
 			(false ? nme.Lib.DEPTH_BUFFER : 0) |
 			(false ? nme.Lib.STENCIL_BUFFER : 0) |
-			(true ? nme.Lib.RESIZABLE : 0) |
+			(false ? nme.Lib.RESIZABLE : 0) |
 			(0 == 4 ? nme.Lib.HW_AA_HIRES : 0) |
 			(0 == 2 ? nme.Lib.HW_AA : 0),
 			"Adding Animation"

@@ -34,7 +34,8 @@ class Main extends Sprite {
 	var previousY:Float;
 	var originalScale:Float;
 	//physics
-
+	var leftEdge:Float;
+	var rightEdge:Float;
 	//view components
 	var scrollBar:ItemScrollBar;
 
@@ -114,8 +115,8 @@ class Main extends Sprite {
 
 		if(event.stageY < startY) {
 			//Lib.current.stage.stageWidth / 21 * 9    FIRST SIDE BIN
-		var leftEdge:Float = Lib.current.stage.stageWidth / 21 * 9;
-		var rightEdge:Float = Lib.current.stage.stageWidth / 21 * 12;
+		leftEdge = Lib.current.stage.stageWidth / 21 * 9;
+		rightEdge = Lib.current.stage.stageWidth / 21 * 12;
 
 			//Lib.current.stage.stageWidth / 21 * 12   SECOND SIDE BIN
 			var hitTest:Int;
@@ -170,7 +171,6 @@ class Main extends Sprite {
 			// Actuate.motionPath (ballContainer, 1, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
 			// 	removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 
-			// 	Timer.delay(callback(reset), 2000);
 			// });
 		}
 	}
@@ -182,10 +182,25 @@ class Main extends Sprite {
 		Actuate.tween(ballContainer, .50, {y: horizon - ((ballContainer.height/ 2) / scaleFactor)}, false).delay(1).ease(Quad.easeIn);
 			// // //fai la roba che puzza e non melo dici
 		Actuate.tween(ballContainer, 1.50, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
-				var path = new MotionPath ().bezier (ballContainer.x, ballContainer.y , ballContainer.x, ballContainer.y - 30,0);
-                                                //x,y, offestx, offsety, strenght?
-		Actuate.motionPath (ballContainer, 0.5, { x: path.x, y: path.y } ).ease (Quad.easeOut);
+		// 		var path = new MotionPath ().bezier (ballContainer.x, ballContainer.y , ballContainer.x, ballContainer.y - 30,0);
+  //                                               //x,y, offestx, offsety, strenght?
+		// Actuate.motionPath (ballContainer, 0.5, { x: path.x, y: path.y } ).ease (Quad.easeOut);
+			if (offest < Lib.current.stage.stageWidth / 2) {
+				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
+
+			} else {
+				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
+
+			}
 		});
+
+		 if (offest > leftEdge + objectToThrowHalfWidth && offest < rightEdge - objectToThrowHalfWidth){// in the middle
+		 		//disapper
+		 		Actuate.tween(ballContainer, .05, {alpha: .0}).delay(1.5).ease(Linear.easeNone);
+
+		 }
+				
+		Timer.delay(callback(reset), 3500);
 
 	}
 
@@ -220,6 +235,9 @@ class Main extends Sprite {
 				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
 			});
 		}
+
+		Timer.delay(callback(reset), 3500);
+
 	}
 
 	function bouncedTweenInside(offest:Float, wind:Float){
@@ -253,7 +271,11 @@ class Main extends Sprite {
 				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
 			});
 		}
+		//disappear
 		Actuate.tween(ballContainer, .15, {alpha: .0}).delay(1.80).ease(Linear.easeNone);
+
+
+		Timer.delay(callback(reset), 3500);
 
 	}
 
@@ -293,9 +315,10 @@ class Main extends Sprite {
 
 	function reset(){
 
-		trace("bravo bischero");
+		trace("reset");
 		ballContainer.x = startX;
 		ballContainer.y = startY;
+		Actuate.tween(ballContainer, .30, {alpha: .99}).ease(Linear.easeNone);
 		ballContainer.scaleX = ballContainer.scaleY = .2;
 	}
 }
