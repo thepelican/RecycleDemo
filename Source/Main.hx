@@ -38,6 +38,7 @@ class Main extends Sprite {
 	var rightEdge:Float;
 	//view components
 	var scrollBar:ItemScrollBar;
+	var wind:Float;
 
 	public function new () {
 
@@ -83,6 +84,7 @@ class Main extends Sprite {
 		scrollBar.y = Lib.current.stage.stageHeight - scrollBar.height;
 		addChild(scrollBar);
 
+		wind = createWind();
 		// items container
 		// var bar = new Sprite();
 		// bar.graphics.beginFill(0xFFFF00, 1);
@@ -108,10 +110,8 @@ class Main extends Sprite {
 
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
 
-		trace('Touch end');
+		trace(event.stageX);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, onTouchUp);
-
-
 
 		if(event.stageY < startY) {
 			//Lib.current.stage.stageWidth / 21 * 9    FIRST SIDE BIN
@@ -121,46 +121,46 @@ class Main extends Sprite {
 			//Lib.current.stage.stageWidth / 21 * 12   SECOND SIDE BIN
 			var hitTest:Int;
 			hitTest = event.stageX;
-			 trace('' + hitTest +' + ' +objectToThrowHalfWidth+ ' | '+ leftEdge + ' | '+ rightEdge);
+			 // trace('' + hitTest +' + ' +objectToThrowHalfWidth+ ' | '+ leftEdge + ' | '+ rightEdge);
 
 			 if (hitTest < (leftEdge - objectToThrowHalfWidth)) {
 				// left rebound.. goes to left
 				trace('left out');
-				normalTweenPlusWind(hitTest, 0);
+				normalTweenPlusWind(hitTest, wind);
 
 			} else if (hitTest > leftEdge - objectToThrowHalfWidth && hitTest < leftEdge) {
 					// left rebound.. touch the left  bordr and goes left
 
 				trace('left on left side ');
-				bouncedTweenOutside(hitTest,0);
+				bouncedTweenOutside(hitTest,wind);
 
 
 			} else if (hitTest > leftEdge && hitTest < leftEdge + objectToThrowHalfWidth) {
 				trace('left on right side');
-				bouncedTweenInside(hitTest,0);
+				bouncedTweenInside(hitTest,wind);
 
 
 			} else if (hitTest > leftEdge + objectToThrowHalfWidth && hitTest < rightEdge - objectToThrowHalfWidth){
 						
 				trace('IN THE MIDDLE');
 			
-				normalTweenPlusWind(hitTest, 0);
+				normalTweenPlusWind(hitTest, wind);
 
 			} else if (hitTest > (rightEdge + objectToThrowHalfWidth)) {
 				// left rebound.. goes to left
 				trace('rightEdge out');
-				normalTweenPlusWind(hitTest, 0);
+				normalTweenPlusWind(hitTest, wind);
 
 
 			} else if (hitTest < rightEdge + objectToThrowHalfWidth && hitTest > rightEdge) {
 					// left rebound.. touch the left  bordr and goes left
 				trace('right on right side ');
-				bouncedTweenOutside(hitTest,0);
+				bouncedTweenOutside(hitTest,wind);
 
 
 			} else if (hitTest < rightEdge && hitTest > rightEdge - objectToThrowHalfWidth) {
 					trace('right in left side');
-					bouncedTweenInside(hitTest,0);
+					bouncedTweenInside(hitTest,wind);
 			}
 
 
@@ -177,28 +177,35 @@ class Main extends Sprite {
 
 	function normalTweenPlusWind(offest:Float, wind:Float){
 
-		Actuate.tween(ballContainer, 1.5, {x: offest}).ease(Linear.easeNone);
-		Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
-		Actuate.tween(ballContainer, .50, {y: horizon - ((ballContainer.height/ 2) / scaleFactor)}, false).delay(1).ease(Quad.easeIn);
-			// // //fai la roba che puzza e non melo dici
-		Actuate.tween(ballContainer, 1.50, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
-		// 		var path = new MotionPath ().bezier (ballContainer.x, ballContainer.y , ballContainer.x, ballContainer.y - 30,0);
-  //                                               //x,y, offestx, offsety, strenght?
-		// Actuate.motionPath (ballContainer, 0.5, { x: path.x, y: path.y } ).ease (Quad.easeOut);
-			if (offest < Lib.current.stage.stageWidth / 2) {
-				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
+		 var path = new MotionPath ().bezier (offest, horizon - ((ballContainer.height / 2) / scaleFactor) , Lib.stage.stageWidth / 2, top, 0);
+                                                //x,y, offestx, offsety, strenght?
+		Actuate.motionPath (ballContainer, 1.5, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
+		removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 
-			} else {
-				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
-
-			}
 		});
 
-		 if (offest > leftEdge + objectToThrowHalfWidth && offest < rightEdge - objectToThrowHalfWidth){// in the middle
-		 		//disapper
-		 		Actuate.tween(ballContainer, .05, {alpha: .0}).delay(1.5).ease(Linear.easeNone);
+		// Actuate.tween(ballContainer, 1.5, {x: offest+(50*wind)}).ease(Linear.easeNone);
+		// Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
+		// Actuate.tween(ballContainer, .50, {y: horizon - ((ballContainer.height/ 2) / scaleFactor)}, false).delay(1).ease(Quad.easeIn);
+			// // //fai la roba che puzza e non melo dici
+		// Actuate.tween(ballContainer, 1.50, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
+		// // 		var path = new MotionPath ().bezier (ballContainer.x, ballContainer.y , ballContainer.x, ballContainer.y - 30,0);
+  // //                                               //x,y, offestx, offsety, strenght?
+		// // Actuate.motionPath (ballContainer, 0.5, { x: path.x, y: path.y } ).ease (Quad.easeOut);
+		// 	if (offest < Lib.current.stage.stageWidth / 2) {
+		// 		Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
 
-		 }
+		// 	} else {
+		// 		Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
+
+		// 	}
+		// });
+
+		//  if (offest > leftEdge + objectToThrowHalfWidth && offest < rightEdge - objectToThrowHalfWidth){// in the middle
+		//  		//disapper
+		//  		Actuate.tween(ballContainer, .05, {alpha: .0}).delay(1.5).ease(Linear.easeNone);
+
+		//  }
 				
 		Timer.delay(callback(reset), 3500);
 
@@ -206,35 +213,42 @@ class Main extends Sprite {
 
 	function bouncedTweenOutside(offest:Float, wind:Float){
 
-		var offestFirstBounce:Float = (Lib.current.stage.stageHeight / 12 * 4) - top- objectToThrowHalfWidth;
-		Actuate.tween(ballContainer, 1.25, {x: offest}).ease(Linear.easeNone);
-		Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
+ 	var path = new MotionPath ().bezier (offest, horizon - ((ballContainer.height / 2) / scaleFactor) , Lib.stage.stageWidth / 2, top, 0);
+                                                //x,y, offestx, offsety, strenght?
+			 Actuate.motionPath (ballContainer, 1.5, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
+			 	removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 
-		if (offest < Lib.current.stage.stageWidth / 2) {
+			 });
+
+		// var offestFirstBounce:Float = (Lib.current.stage.stageHeight / 12 * 4) - top- objectToThrowHalfWidth;
+		// // Actuate.tween(ballContainer, 1.25, {x: offest+(50*wind)}).ease(Linear.easeNone);
+		// // Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
+
+		// if (offest < Lib.current.stage.stageWidth / 2) {
 		 	
-		 	Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
+		//  	Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
 
-				 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
-				 Actuate.tween(ballContainer, .45, {x: offest - (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
+		// 		 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
+		// 		 Actuate.tween(ballContainer, .45, {x: offest - (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
 
-			 });
+		// 	 });
 
-			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
-				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
-			});
+		// 	Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+		// 		Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
+		// 	});
 
-		} else{
-			Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
+		// } else{
+		// 	Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
 
-				 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
-				 Actuate.tween(ballContainer, .45, {x: offest + (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
+		// 		 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
+		// 		 Actuate.tween(ballContainer, .45, {x: offest + (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
 
-			 });
+		// 	 });
 
-			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
-				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
-			});
-		}
+		// 	Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+		// 		Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
+		// 	});
+		// }
 
 		Timer.delay(callback(reset), 3500);
 
@@ -242,45 +256,51 @@ class Main extends Sprite {
 
 	function bouncedTweenInside(offest:Float, wind:Float){
 
-		var offestFirstBounce:Float = (Lib.current.stage.stageHeight / 12 * 4) - top- objectToThrowHalfWidth;
-		Actuate.tween(ballContainer, 1.25, {x: offest}).ease(Linear.easeNone);
-		Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
+ var path = new MotionPath ().bezier (offest, horizon - ((ballContainer.height / 2) / scaleFactor) , Lib.stage.stageWidth / 2, top, 0);
+                                                //x,y, offestx, offsety, strenght?
+			 Actuate.motionPath (ballContainer, 1.5, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
+			 	removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 
-		if (offest < Lib.current.stage.stageWidth / 2) {
+			});
+
+		// var offestFirstBounce:Float = (Lib.current.stage.stageHeight / 12 * 4) - top- objectToThrowHalfWidth;
+		// // Actuate.tween(ballContainer, 1.25, {x: offest+(50*wind)}).ease(Linear.easeNone);
+		// // Actuate.tween(ballContainer, 1.0, {y: top}).ease(Quad.easeOut);
+
+		// if (offest < Lib.current.stage.stageWidth / 2) {
 		 	
-		Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
+		// Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
 
-				 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
-				 Actuate.tween(ballContainer, .45, {x: offest + (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
+		// 		 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
+		// 		 Actuate.tween(ballContainer, .45, {x: offest + (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
 
-			 });
+		// 	 });
 
-			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
-				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
-			});
+		// 	Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+		// 		Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
+		// 	});
 
-		} else{
-			Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
+		// } else{
+		// 	Actuate.tween(ballContainer, .35, {y: top + offestFirstBounce} , false).delay(1.0).ease(Quad.easeIn).onComplete(function(){
 
-				 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
-				 Actuate.tween(ballContainer, .45, {x: offest - (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
+		// 		 Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
+		// 		 Actuate.tween(ballContainer, .45, {x: offest - (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
 
-			 });
+		// 	 });
 
-			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
-				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
-			});
-		}
-		//disappear
-		Actuate.tween(ballContainer, .15, {alpha: .0}).delay(1.80).ease(Linear.easeNone);
+		// 	Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+		// 		Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
+		// 	});
+		// }
+		// //disappear
+		// Actuate.tween(ballContainer, .15, {alpha: .0}).delay(1.80).ease(Linear.easeNone);
 
 
-		Timer.delay(callback(reset), 3500);
+		// Timer.delay(callback(reset), 3500);
 
 	}
 
 	function onEnterFrame(event) {
-
 		//check if falling 
 		if (previousY > ballContainer.y) {
 			falling = false;
@@ -298,6 +318,57 @@ class Main extends Sprite {
 				//understand if is gonna fall inthe bin or not:)
 			}
 		}
+	}
+
+	function createWind():Float{
+
+		var random:Float = Math.random();
+
+		// if (random < 0.16){
+
+		// } else if (random < 0.16){
+		// 	//strong left
+		// 	trace('strong left');
+		// 	random = -3.5;
+		// } else if (random > 0.14 && random < 0.29){
+		// 	//middle left
+		// 	trace('middle left');
+
+		// 	random = -2.0;
+
+		// } else if (random > 0.29 && random < 0.43){
+		// 	//light left
+		// 	trace('light left');
+
+		// 	random = -0.7;
+
+		// } else if (random > 0.43 && random < 0.57){
+		// 	//light left
+		// 	trace('NO wind');
+
+		// 	random = 0.0;
+
+		// } else if (random > 0.57 && random < 0.72){
+		// 	//light right
+		// 	trace('light right');
+
+		// 	random = 0.7;
+
+		// } else if (random > 0.72 && random < 0.86){
+		// 	//middle right
+		// 	trace('middle right');
+
+		// 	random = 2.0;
+
+		// } else if (random > 0.86 && random < 1.0){
+		// 	//strogn right
+		// 	trace('strong right');
+
+			random = 3.5;
+
+		// }
+		return	random;
+
 	}
 
 	function drawBucket() {
@@ -318,6 +389,7 @@ class Main extends Sprite {
 		trace("reset");
 		ballContainer.x = startX;
 		ballContainer.y = startY;
+		wind = createWind();
 		Actuate.tween(ballContainer, .30, {alpha: .99}).ease(Linear.easeNone);
 		ballContainer.scaleX = ballContainer.scaleY = .2;
 	}
