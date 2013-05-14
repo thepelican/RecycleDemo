@@ -1,14 +1,9 @@
 import com.eclecticdesignstudio.motion.easing.Linear;
-import com.eclecticdesignstudio.motion.easing.Cubic;
-import com.eclecticdesignstudio.motion.easing.Elastic;
-import com.eclecticdesignstudio.motion.easing.Expo;
 import com.eclecticdesignstudio.motion.easing.Quad;
-import com.eclecticdesignstudio.motion.easing.Quart;
-import com.eclecticdesignstudio.motion.easing.Quint;
-import com.eclecticdesignstudio.motion.easing.Sine;
 import com.eclecticdesignstudio.motion.MotionPath;
 import com.eclecticdesignstudio.motion.easing.Back;
 import com.eclecticdesignstudio.motion.Actuate;
+
 import nme.display.Bitmap;
 import nme.display.Sprite;
 import nme.Assets;
@@ -16,8 +11,9 @@ import nme.Lib;
 import nme.events.MouseEvent;
 import nme.events.Event;
 import haxe.Timer;
+import nme.text.TextField;
 
-class Main extends Sprite { 
+class Main extends Sprite {
 
 	var isDragging = false;
 	var startX:Float;
@@ -37,6 +33,8 @@ class Main extends Sprite {
 	//view components
 	var scrollBar:ItemScrollBar;
 	var wind:Float;
+	//to print out wind strength
+	var windTf:TextField;
 
 	public function new () {
 
@@ -70,9 +68,20 @@ class Main extends Sprite {
 		scrollBar.y = Lib.current.stage.stageHeight - scrollBar.height;
 		addChild(scrollBar);
 
+		createWindTf();
 		wind = createWind();
 
 		ballContainer.addEventListener(MouseEvent.MOUSE_DOWN, onTouchDown);
+	}
+
+	function createWindTf() {
+		windTf = new TextField();
+		windTf.text = "ciao";
+		windTf.height = windTf.textHeight + 5;
+		windTf.width = Lib.current.stage.stageWidth;
+		windTf.y = scrollBar.y - windTf.height;
+		windTf.text = "";
+		addChild(windTf);
 	}
 
 	// User started to drag the ball
@@ -178,12 +187,12 @@ class Main extends Sprite {
 		});
 
 		if (offset < Lib.current.stage.stageWidth / 2) {
-			Actuate.tween(ballContainer, 1.70, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+			Actuate.tween(ballContainer, 1.70, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
 				Actuate.tween(ballContainer, 1.5, {y: ballContainer.y - (objectToThrowHalfWidth / 2), x: ballContainer.x - objectToThrowHalfWidth}, false).ease(Linear.easeNone);
 				});
 
 			} else{
-				Actuate.tween(ballContainer, 1.70, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+				Actuate.tween(ballContainer, 1.70, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
 					Actuate.tween(ballContainer, 1.5, {y: ballContainer.y - (objectToThrowHalfWidth / 2), x: ballContainer.x + objectToThrowHalfWidth}, false).ease(Linear.easeNone);
 					});
 			}
@@ -208,17 +217,17 @@ class Main extends Sprite {
 				Actuate.tween(ballContainer, .45, {y: horizon - 2 *((ballContainer.height/ 2) / scaleFactor)}, false).ease(Quad.easeIn);
 				Actuate.tween(ballContainer, .45, {x: offset - (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
 			}
-			
+
 			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 		});
 
 		if (offset < Lib.current.stage.stageWidth / 2) {
-			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
 				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
-			});	
+			});
 
 		} else {
-			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {					
+			Actuate.tween(ballContainer, 1.85, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
 				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
 			});
 		}
@@ -229,63 +238,45 @@ class Main extends Sprite {
 	}
 
 	function onEnterFrame(event) {
-		//check if falling 
-		if (previousY > ballContainer.y) {
-			falling = false;
-		} else {
-			falling = true;
-		}
-			
+		//check if falling
+		falling = previousY <= ballContainer.y;
 		previousY = ballContainer.y;
-
-		if(ballContainer.y >= (horizon)) {
-		//null : under horizont
-		} else {
-
-			if (ballContainer.y > top && falling){
-				//understand if is gonna fall inthe bin or not:)
-			}
-		}
 	}
 
-	function createWind():Float{
+	function createWind():Float {
+
 		//POSITIVE NUMBER: WIND PUSH FROM RIGHT LO LEFT
 		//NEGATIVE NUMBER : WIND PUSH FROM LEFT TO RIGHT
+
 		var random:Float = Math.random();
 
-		if (random < 0.14){
+		if (random < 0.14) {
 			//strong left
-			trace('strong FROM RIGHT');
+			windTf.text = 'strong FROM RIGHT';
 			random = -0.7;
-
-			} else if (random > 0.14 && random < 0.29){
+		} else if (random > 0.14 && random < 0.29) {
 			//middle left
-			trace('middle FROM RIGHT');
+			windTf.text = 'middle FROM RIGHT';
 			random = -0.55;
-
-			} else if (random > 0.29 && random < 0.43){
+		} else if (random > 0.29 && random < 0.43) {
 			//light left
-			trace('light FROM RIGHT');
+			windTf.text = 'light FROM RIGHT';
 			random = -0.3;
-
-			} else if (random > 0.43 && random < 0.57){
+		} else if (random > 0.43 && random < 0.57) {
 			//light left
-			trace('NO wind');
+			windTf.text = 'NO wind';
 			random = 0.0;
-
-			} else if (random > 0.57 && random < 0.72){
+		} else if (random > 0.57 && random < 0.72) {
 			//light right
-			trace('light FRMO LEFT');
+			windTf.text = 'light FROM LEFT';
 			random = 0.3;
-
-			} else if (random > 0.72 && random < 0.86){
+		} else if (random > 0.72 && random < 0.86) {
 			//middle right
-			trace('middle FROM LEFT');
+			windTf.text = 'middle FROM LEFT';
 			random = 0.55;
-
-			} else if (random > 0.86 && random < 1.0){
+		} else if (random > 0.86 && random < 1.0) {
 			//strogn right
-			trace('strong FROM LEFT');
+			windTf.text = 'strong FROM LEFT';
 			random = 0.7;
 		}
 
@@ -303,7 +294,7 @@ class Main extends Sprite {
 		graphics.moveTo(Lib.current.stage.stageWidth / 21 * 12, horizon);
 		graphics.lineTo(Lib.current.stage.stageWidth / 21 * 12, Lib.current.stage.stageHeight / 12 * 4);
 	}
-	
+
 
 	function reset() {
 		// trace("reset");
