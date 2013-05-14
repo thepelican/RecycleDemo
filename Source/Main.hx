@@ -8,7 +8,6 @@ import com.eclecticdesignstudio.motion.easing.Quint;
 import com.eclecticdesignstudio.motion.easing.Sine;
 import com.eclecticdesignstudio.motion.MotionPath;
 import com.eclecticdesignstudio.motion.easing.Back;
-
 import com.eclecticdesignstudio.motion.Actuate;
 import nme.display.Bitmap;
 import nme.display.Sprite;
@@ -18,7 +17,7 @@ import nme.events.MouseEvent;
 import nme.events.Event;
 import haxe.Timer;
 
-class Main extends Sprite {
+class Main extends Sprite { 
 
 	var isDragging = false;
 	var startX:Float;
@@ -172,10 +171,9 @@ class Main extends Sprite {
 
 			if (offset < Lib.current.stage.stageWidth / 2) {
 				Actuate.tween(ballContainer, .45, {x: offset - (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
-			} else{	
+			} else{
 				Actuate.tween(ballContainer, .45, {x: offset + (Lib.current.stage.stageWidth / 21)}).ease(Linear.easeNone);
 			}
-			
 			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 		});
 
@@ -259,40 +257,35 @@ class Main extends Sprite {
 			//strong left
 			trace('strong FROM RIGHT');
 			random = -0.7;
+
 			} else if (random > 0.14 && random < 0.29){
 			//middle left
 			trace('middle FROM RIGHT');
-
 			random = -0.55;
 
 			} else if (random > 0.29 && random < 0.43){
 			//light left
 			trace('light FROM RIGHT');
-
 			random = -0.3;
 
 			} else if (random > 0.43 && random < 0.57){
 			//light left
 			trace('NO wind');
-
 			random = 0.0;
 
 			} else if (random > 0.57 && random < 0.72){
 			//light right
 			trace('light FRMO LEFT');
-
 			random = 0.3;
 
 			} else if (random > 0.72 && random < 0.86){
 			//middle right
 			trace('middle FROM LEFT');
-
 			random = 0.55;
 
 			} else if (random > 0.86 && random < 1.0){
 			//strogn right
 			trace('strong FROM LEFT');
-
 			random = 0.7;
 		}
 
@@ -317,7 +310,7 @@ class Main extends Sprite {
 		ballContainer.x = startX;
 		ballContainer.y = startY;
 		wind = createWind();
-		Actuate.tween(ballContainer, .30, {alpha: .99}).ease(Linear.easeNone);
+		Actuate.tween(ballContainer, .30, {alpha: 1}).ease(Linear.easeNone);
 		ballContainer.scaleX = ballContainer.scaleY = .2;
 	}
 }
