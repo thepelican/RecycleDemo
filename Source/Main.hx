@@ -119,9 +119,12 @@ class Main extends Sprite {
 		rightEdge = Lib.current.stage.stageWidth / 21 * 12;
 
 			//Lib.current.stage.stageWidth / 21 * 12   SECOND SIDE BIN
-			var hitTest:Int;
-			hitTest = event.stageX;
-			 // trace('' + hitTest +' + ' +objectToThrowHalfWidth+ ' | '+ leftEdge + ' | '+ rightEdge);
+			var hitTest:Float;
+
+			hitTest = event.stageX + ((Lib.stage.stageWidth / 2)*wind);
+
+			// hitTest = event.stageX;
+			  trace('event stage ' + event.stageX +' quanto levo ' +(Lib.stage.stageWidth / 2)*wind);
 
 			 if (hitTest < (leftEdge - objectToThrowHalfWidth)) {
 				// left rebound.. goes to left
@@ -177,8 +180,9 @@ class Main extends Sprite {
 
 	function normalTweenPlusWind(offest:Float, wind:Float){
 
-		 var path = new MotionPath ().bezier (offest, horizon - ((ballContainer.height / 2) / scaleFactor) , Lib.stage.stageWidth / 2, top, 0);
-                                                //x,y, offestx, offsety, strenght?
+		 var path = new MotionPath ().bezier (offest, horizon - ((ballContainer.height / 2) / scaleFactor) , (Lib.stage.stageWidth / 2)*(-wind +1), 0, 0);
+                                                //x,y, offestx, offsety, strenght?   //(Lib.stage.stageWidth / 2)*wind
+                                                trace('de quanto mi sposto '+(Lib.stage.stageWidth / 2)*(wind +1));
 		Actuate.motionPath (ballContainer, 1.5, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
 		removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 
@@ -212,13 +216,14 @@ class Main extends Sprite {
 	}
 
 	function bouncedTweenOutside(offest:Float, wind:Float){
+				normalTweenPlusWind(offest, wind);
 
- 	var path = new MotionPath ().bezier (offest, horizon - ((ballContainer.height / 2) / scaleFactor) , Lib.stage.stageWidth / 2, top, 0);
-                                                //x,y, offestx, offsety, strenght?
-			 Actuate.motionPath (ballContainer, 1.5, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
-			 	removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+ 	// var path = new MotionPath ().bezier (offest, horizon - ((ballContainer.height / 2) / scaleFactor) , Lib.stage.stageWidth / 2, top, 0);
+  //                                               //x,y, offestx, offsety, strenght?
+		// 	 Actuate.motionPath (ballContainer, 1.5, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
+		// 	 	removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 
-			 });
+		// 	 });
 
 		// var offestFirstBounce:Float = (Lib.current.stage.stageHeight / 12 * 4) - top- objectToThrowHalfWidth;
 		// // Actuate.tween(ballContainer, 1.25, {x: offest+(50*wind)}).ease(Linear.easeNone);
@@ -250,18 +255,20 @@ class Main extends Sprite {
 		// 	});
 		// }
 
-		Timer.delay(callback(reset), 3500);
+		// Timer.delay(callback(reset), 3500);
 
 	}
 
 	function bouncedTweenInside(offest:Float, wind:Float){
+				normalTweenPlusWind(offest, wind);
 
- var path = new MotionPath ().bezier (offest, horizon - ((ballContainer.height / 2) / scaleFactor) , Lib.stage.stageWidth / 2, top, 0);
-                                                //x,y, offestx, offsety, strenght?
-			 Actuate.motionPath (ballContainer, 1.5, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
-			 	removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+ // var path = new MotionPath ().bezier (offest, horizon - ((ballContainer.height / 2) / scaleFactor) , Lib.stage.stageWidth / 2, top, 0);
+ //                                                //x,y, offestx, offsety, strenght?
+	// 		 Actuate.motionPath (ballContainer, 1.5, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
+	// 		 	removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 
-			});
+	// 		});
+
 
 		// var offestFirstBounce:Float = (Lib.current.stage.stageHeight / 12 * 4) - top- objectToThrowHalfWidth;
 		// // Actuate.tween(ballContainer, 1.25, {x: offest+(50*wind)}).ease(Linear.easeNone);
@@ -322,51 +329,51 @@ class Main extends Sprite {
 
 	function createWind():Float{
 
+
+//POSITIVE NUMBER: WIND PUSH FROM RIGHT LO LEFT
+//NEGATIVE NUMBER : WIND PUSH FROM LEFT TO RIGHT
 		var random:Float = Math.random();
 
-		// if (random < 0.16){
+		if (random < 0.14){
+			//strong left
+			trace('strong FROM RIGHT');
+			random = -0.7;
+		} else if (random > 0.14 && random < 0.29){
+			//middle left
+			trace('middle FROM RIGHT');
 
-		// } else if (random < 0.16){
-		// 	//strong left
-		// 	trace('strong left');
-		// 	random = -3.5;
-		// } else if (random > 0.14 && random < 0.29){
-		// 	//middle left
-		// 	trace('middle left');
+			random = -0.55;
 
-		// 	random = -2.0;
+		} else if (random > 0.29 && random < 0.43){
+			//light left
+			trace('light FROM RIGHT');
 
-		// } else if (random > 0.29 && random < 0.43){
-		// 	//light left
-		// 	trace('light left');
+			random = -0.3;
 
-		// 	random = -0.7;
+		} else if (random > 0.43 && random < 0.57){
+			//light left
+			trace('NO wind');
 
-		// } else if (random > 0.43 && random < 0.57){
-		// 	//light left
-		// 	trace('NO wind');
+			random = 0.0;
 
-		// 	random = 0.0;
+		} else if (random > 0.57 && random < 0.72){
+			//light right
+			trace('light FRMO LEFT');
 
-		// } else if (random > 0.57 && random < 0.72){
-		// 	//light right
-		// 	trace('light right');
+			random = 0.3;
 
-		// 	random = 0.7;
+		} else if (random > 0.72 && random < 0.86){
+			//middle right
+			trace('middle FROM LEFT');
 
-		// } else if (random > 0.72 && random < 0.86){
-		// 	//middle right
-		// 	trace('middle right');
+			random = 0.55;
 
-		// 	random = 2.0;
+		} else if (random > 0.86 && random < 1.0){
+			//strogn right
+		 	trace('strong FROM LEFT');
 
-		// } else if (random > 0.86 && random < 1.0){
-		// 	//strogn right
-		// 	trace('strong right');
-
-			random = 3.5;
-
-		// }
+			 random = 0.7;
+		}
 		return	random;
 
 	}
