@@ -16,6 +16,7 @@ import nme.Lib;
 import nme.events.MouseEvent;
 import nme.events.Event;
 import haxe.Timer;
+import au.com.recyclesmart.view.ResultOverlay;
 
 class Main extends Sprite { 
 
@@ -154,7 +155,13 @@ class Main extends Sprite {
 			Actuate.tween(ballContainer, .05, {alpha: .0}).delay(1.5).ease(Linear.easeNone);	//disapper
 		}
 
-		Timer.delay(callback(reset), 3500);
+		//show the result ok ionly if inthe bin
+		if (offset > leftEdge + objectToThrowHalfWidth && offset < rightEdge - objectToThrowHalfWidth){
+			Timer.delay(callback(showResult), 2000);
+
+		} else {
+			Timer.delay(callback(reset), 3500);
+		}
 	}
 
 	function bouncedTweenOutside(offset:Float, originalHitPoint:Float) {
@@ -225,7 +232,7 @@ class Main extends Sprite {
 		//disappear
 		Actuate.tween(ballContainer, .15, {alpha: .0}).delay(1.80).ease(Linear.easeNone);
 
-		Timer.delay(callback(reset), 3500);
+		Timer.delay(callback(showResult), 2000);
 	}
 
 	function onEnterFrame(event) {
@@ -303,7 +310,25 @@ class Main extends Sprite {
 		graphics.moveTo(Lib.current.stage.stageWidth / 21 * 12, horizon);
 		graphics.lineTo(Lib.current.stage.stageWidth / 21 * 12, Lib.current.stage.stageHeight / 12 * 4);
 	}
-	
+
+	function showResult(){
+
+		// trace('showResult');
+		var result = new ResultOverlay();
+		addChild(result);
+		result.setSize();
+		result.setScore(true);
+		 result.alpha = 0;
+		Actuate.tween(result, 1.5, {alpha: 1}).ease(Linear.easeNone).onComplete(function() {					
+			 Actuate.tween(result, 1.0, {alpha: 0}).ease(Linear.easeNone).delay(1.0).onComplete(function() {					
+				removeChild(result);
+			 });			
+
+		});	
+		Timer.delay(callback(reset), 3000);
+
+	}
+
 
 	function reset() {
 		// trace("reset");
