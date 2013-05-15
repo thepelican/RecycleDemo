@@ -12,6 +12,7 @@ import nme.events.MouseEvent;
 import nme.events.Event;
 import haxe.Timer;
 import au.com.recyclesmart.view.ResultOverlay;
+import au.com.recyclesmart.view.ItemScrollBar;
 import nme.text.TextField;
 
 class Main extends Sprite {
@@ -65,7 +66,7 @@ class Main extends Sprite {
 		// bottom scrollbar
 
 		scrollBar = new ItemScrollBar();
-		scrollBar.setSize(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight / 6);
+		scrollBar.setSize(Lib.current.stage.stageWidth, 80);
 		scrollBar.y = Lib.current.stage.stageHeight - scrollBar.height;
 		addChild(scrollBar);
 
@@ -161,13 +162,12 @@ class Main extends Sprite {
 		});
 
 		if (offset > leftEdge + objectToThrowHalfWidth && offset < rightEdge - objectToThrowHalfWidth) {// in the middle
-			Actuate.tween(ballContainer, .05, {alpha: .0}).delay(1.5).ease(Linear.easeNone);	//disapper
+			Actuate.tween(ballContainer, .05, {alpha: 0}).delay(1.5).ease(Linear.easeNone);	//disapper
 		}
 
 		//show the result ok ionly if inthe bin
 		if (offset > leftEdge + objectToThrowHalfWidth && offset < rightEdge - objectToThrowHalfWidth){
 			Timer.delay(callback(showResult), 2000);
-
 		} else {
 			Timer.delay(callback(reset), 3500);
 		}
@@ -239,7 +239,7 @@ class Main extends Sprite {
 			});
 		}
 		//disappear
-		Actuate.tween(ballContainer, .15, {alpha: .0}).delay(1.80).ease(Linear.easeNone);
+		Actuate.tween(ballContainer, .15, {alpha: 0}).delay(1.80).ease(Linear.easeNone);
 
 		Timer.delay(callback(showResult), 2000);
 	}
@@ -302,24 +302,23 @@ class Main extends Sprite {
 		graphics.lineTo(Lib.current.stage.stageWidth / 21 * 12, Lib.current.stage.stageHeight / 12 * 4);
 	}
 
-	function showResult(){
+	function showResult() {
 
 		// trace('showResult');
 		var result = new ResultOverlay();
 		addChild(result);
 		result.setSize();
 		result.setScore(true);
-		 result.alpha = 0;
-		Actuate.tween(result, 1.5, {alpha: 1}).ease(Linear.easeNone).onComplete(function() {					
-			 Actuate.tween(result, 1.0, {alpha: 0}).ease(Linear.easeNone).delay(1.0).onComplete(function() {					
+		result.alpha = 0;
+
+		Actuate.tween(result, 1.5, {alpha: 1}).ease(Linear.easeNone).onComplete(function() {
+			 Actuate.tween(result, 1.0, {alpha: 0}).ease(Linear.easeNone).delay(1.0).onComplete(function() {
 				removeChild(result);
-			 });			
-		});	
+			 });
+		});
+
 		Timer.delay(callback(reset), 3000);
-
 	}
-
-
 
 	function reset() {
 		// trace("reset");

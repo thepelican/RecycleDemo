@@ -1,6 +1,10 @@
+package au.com.recyclesmart.view;
+
 import nme.display.Sprite;
 import nme.events.MouseEvent;
 import nme.Lib;
+
+import au.com.recyclesmart.eventbus.CentralDispatcher;
 
 class ItemScrollBar extends Sprite {
 
@@ -12,9 +16,13 @@ class ItemScrollBar extends Sprite {
 	var maxX:Float;
 	var minX:Float;
 
+	private var dispatcher:CentralDispatcher;
+
 	public function new () {
 		super();
 		this.padding = 5;
+
+		dispatcher = CentralDispatcher.getInstance();
 	}
 
 	public function setSize(newWidth:Float, newHeight:Float) {

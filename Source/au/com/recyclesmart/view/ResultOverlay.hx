@@ -1,4 +1,3 @@
-
 package au.com.recyclesmart.view;
 
 import nme.display.Bitmap;
