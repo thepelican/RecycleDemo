@@ -1,4 +1,4 @@
-import com.eclecticdesignstudio.motion.easing.Linear;
+ import com.eclecticdesignstudio.motion.easing.Linear;
 import com.eclecticdesignstudio.motion.easing.Quad;
 import com.eclecticdesignstudio.motion.MotionPath;
 import com.eclecticdesignstudio.motion.easing.Back;
@@ -33,6 +33,8 @@ class Main extends Sprite {
 	var rightEdge:Float;
 	//view components
 	var scrollBar:ItemScrollBar;
+	var containerBin:Bitmap;
+	var halfBin:Bitmap;
 	var wind:Float;
 	//to print out wind strength
 	var windTf:TextField;
@@ -43,7 +45,7 @@ class Main extends Sprite {
 
 		ballContainer = new Sprite();
 
-		var ball = new Bitmap(Assets.getBitmapData("assets/nme.png"));
+		var ball = new Bitmap(Assets.getBitmapData("assets/water-bottle.png"));
 		ball.x = - ball.width / 2;
 		ball.y = - ball.height / 2;
 		startX = Lib.current.stage.stageWidth / 2;
@@ -51,7 +53,12 @@ class Main extends Sprite {
 		top = Lib.current.stage.stageHeight / 6;
 		horizon  =  Lib.current.stage.stageHeight / 12 * 5;
 		previousY =  Lib.current.stage.stageHeight ;
+		
+		//bin setup
 		drawBucket();
+		createBinImage();
+		createHalfBin();
+
 		originalScale = .2;
 		scaleFactor = 3;
 		ballContainer.addChild(ball);
@@ -71,7 +78,6 @@ class Main extends Sprite {
 
 		createWindTf();
 		wind = createWind();
-
 		ballContainer.addEventListener(MouseEvent.MOUSE_DOWN, onTouchDown);
 	}
 
@@ -85,6 +91,26 @@ class Main extends Sprite {
 		addChild(windTf);
 	}
 
+	//has to be managed
+	function createBinImage() {
+
+		containerBin = new Bitmap(Assets.getBitmapData("assets/yellow.png"));
+		containerBin.x = Lib.current.stage.stageWidth / 22 * 9;
+		containerBin.y = Lib.current.stage.stageHeight / 12 * 4;
+		containerBin.scaleX = containerBin.scaleY = .30;
+
+		addChild(containerBin);
+	}
+
+	function createHalfBin() {
+		trace('createHalfBin');
+		halfBin = new Bitmap(Assets.getBitmapData("assets/half-bin.png"));
+		halfBin.x = Lib.current.stage.stageWidth / 22 * 9;
+		halfBin.y = Lib.current.stage.stageHeight / 12 * 4;
+		halfBin.scaleX = halfBin.scaleY = .30;
+
+		addChild(halfBin);
+	}	
 	// User started to drag the ball
 	function onTouchDown(event) {
 		this.isDragging = true;
@@ -247,6 +273,10 @@ class Main extends Sprite {
 	function onEnterFrame(event) {
 		//check if falling
 		falling = previousY <= ballContainer.y;
+		// if (falling)
+			// addChild(halfBin);
+		// else
+			// removeChild(halfBin);
 		previousY = ballContainer.y;
 	}
 

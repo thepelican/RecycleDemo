@@ -6,6 +6,8 @@
 
 	<window width="320" height="480" if="flash" />
 	<window width="320" height="480" if="html5" />
+	<window width="640" height="960" if="ios" />
+
 	# <window fps="60" orientation="portrait" resizable="false" unless="target_flash" />
 	<source path="Source" />
 	
