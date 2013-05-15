@@ -1,5 +1,6 @@
 import nme.display.Sprite;
 import nme.events.MouseEvent;
+import nme.Lib;
 
 class ItemScrollBar extends Sprite {
 
@@ -8,35 +9,37 @@ class ItemScrollBar extends Sprite {
 	var padding:Float;
 	var touchStartX:Float;
 	var panelStartX:Float;
+	var maxX:Float;
+	var minX:Float;
 
 	public function new () {
 		super();
-
 		this.padding = 5;
 	}
 
 	public function setSize(newWidth:Float, newHeight:Float) {
-
 		//draw bg
-		graphics.beginFill(0xFF0000, 1);
+		graphics.beginFill(0, 1);
 		graphics.drawRect(0, 0, newWidth, newHeight);
 		graphics.endFill();
 
 		drawScrollingPanel(newWidth, newHeight);
+
+		this.maxX = 0;
+		this.minX = newWidth - (scrollingPanel.width + 2 * this.padding);
 
 		addEventListener(MouseEvent.MOUSE_DOWN, beginDrag);
 	}
 
 	function drawScrollingPanel(w:Float, h:Float) {
 		scrollingPanel = new Sprite();
-		scrollingPanel.graphics.beginFill(0, 1);
+		scrollingPanel.graphics.beginFill(0xcccccc, 1);
 		scrollingPanel.graphics.drawRect(this.padding, this.padding, w * 2, h - padding * 2);
 		scrollingPanel.graphics.endFill();
 		addChild(scrollingPanel);
 	}
 
 	function beginDrag(e:MouseEvent) {
-
 		panelStartX = scrollingPanel.x;
 		touchStartX = e.stageX;
 
@@ -47,9 +50,13 @@ class ItemScrollBar extends Sprite {
 	function dragMove(e:MouseEvent) {
 		var deltaX =  e.stageX - touchStartX;
 
-		//trace('touchStartX: ' + touchStartX + ' - deltaX: ' + deltaX);
-
 		scrollingPanel.x = panelStartX + deltaX;
+
+		if(scrollingPanel.x > maxX)
+			scrollingPanel.x = maxX;
+
+		if(scrollingPanel.x < minX)
+			scrollingPanel.x = minX;
 	}
 
 	function finishDrag(e:MouseEvent) {

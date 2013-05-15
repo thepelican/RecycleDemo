@@ -148,9 +148,9 @@ class Main extends Sprite {
 			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 		});
 
-		graphics.lineStyle(2, 0xFF0000);
-		graphics.moveTo(ballContainer.x, ballContainer.y);
-    	graphics.curveTo(originalHitPoint, 0, offset, horizon - ((ballContainer.height / 2) / scaleFactor));
+		// graphics.lineStyle(2, 0xFF0000);
+		// graphics.moveTo(ballContainer.x, ballContainer.y);
+  //   	graphics.curveTo(originalHitPoint, 0, offset, horizon - ((ballContainer.height / 2) / scaleFactor));
 
 		Actuate.tween(ballContainer, 1.50, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
 			if (offset < Lib.current.stage.stageWidth / 2) {
@@ -177,9 +177,9 @@ class Main extends Sprite {
 		var offsetFirstBounce:Float = (Lib.current.stage.stageHeight / 12 * 4) - top - objectToThrowHalfWidth;
 		var path = new MotionPath ().bezier (offset, top + offsetFirstBounce, originalHitPoint, 0, 0);
 
-		graphics.lineStyle(2, 0xFF0000);
-		graphics.moveTo(ballContainer.x, ballContainer.y);
-    	graphics.curveTo(originalHitPoint, 0, offset, top + offsetFirstBounce);
+		// graphics.lineStyle(2, 0xFF0000);
+		// graphics.moveTo(ballContainer.x, ballContainer.y);
+  //   	graphics.curveTo(originalHitPoint, 0, offset, top + offsetFirstBounce);
 
 		Actuate.motionPath (ballContainer, 1.25, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
 
@@ -212,9 +212,9 @@ class Main extends Sprite {
 		var offsetFirstBounce:Float = (Lib.current.stage.stageHeight / 12 * 4) - top- objectToThrowHalfWidth;
 		var path = new MotionPath ().bezier (offset, top + offsetFirstBounce , originalHitPoint, 0, 0);
 
-		graphics.lineStyle(2, 0xFF0000);
-		graphics.moveTo(ballContainer.x, ballContainer.y);
-    	graphics.curveTo(originalHitPoint, 0, offset, top + offsetFirstBounce);
+		// graphics.lineStyle(2, 0xFF0000);
+		// graphics.moveTo(ballContainer.x, ballContainer.y);
+  //   	graphics.curveTo(originalHitPoint, 0, offset, top + offsetFirstBounce);
 
 		Actuate.motionPath (ballContainer, 1.25, { x: path.x, y: path.y } ).ease (Linear.easeNone).onComplete(function() {
 			if (offset < Lib.current.stage.stageWidth / 2) {
