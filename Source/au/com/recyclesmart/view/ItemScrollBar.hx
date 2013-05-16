@@ -5,6 +5,7 @@ import nme.events.MouseEvent;
 import nme.Lib;
 
 import au.com.recyclesmart.eventbus.CentralDispatcher;
+import au.com.recyclesmart.model.Model;
 
 class ItemScrollBar extends Sprite {
 
@@ -16,6 +17,8 @@ class ItemScrollBar extends Sprite {
 	var maxX:Float;
 	var minX:Float;
 
+	private var model:Model;
+
 	private var dispatcher:CentralDispatcher;
 
 	public function new () {
@@ -23,6 +26,7 @@ class ItemScrollBar extends Sprite {
 		this.padding = 5;
 
 		dispatcher = CentralDispatcher.getInstance();
+		model = Model.getInstance();
 	}
 
 	public function setSize(newWidth:Float, newHeight:Float) {
