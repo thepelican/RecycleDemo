@@ -81,6 +81,39 @@ class Main extends Sprite {
 		ballContainer.addEventListener(MouseEvent.MOUSE_DOWN, onTouchDown);
 	}
 
+	// private function initialize ():Void {
+	 
+	//     Lib.current.stage.align = StageAlign.TOP_LEFT;
+	//     Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
+	 
+	//     Global.stageWidth = Lib.current.stage.stageWidth;
+	//     Global.stageHeight = Lib.current.stage.stageHeight;
+	 
+	//     trace("Lib.current.stage.stageWidth: " + Lib.current.stage.stageWidth);
+	//     trace("Lib.current.stage.stageHeight: " + Lib.current.stage.stageHeight);
+	 
+	//     trace("Capabilities.screenResolutionX: "+ Capabilities.screenResolutionX);
+	 
+	//     /** adjust for multi res iOS devices, iPhone 3, 4 ² iPad 1&amp;2, 3(new) */
+	//     #if iphone
+	//     if (Capabilities.screenResolutionX &lt;= 320) { // iPhone classic (3 &amp; 3GS)
+	//         trace("should be classic iphone (3 &amp; 3GS) " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
+	//     }
+	//     else if (Capabilities.screenResolutionX &lt;= 640) { // iPad 1&amp;2
+	//         trace("should be iPhone 4 &amp; 4S) " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
+	//     }
+	//     else if (Capabilities.screenResolutionX &lt;= 768) { // iPad 1 &amp; 2
+	//         trace("should be iPad 1 &amp; 2 " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
+	//     }
+	//     else if (Capabilities.screenResolutionX &lt;= 1536) { // iPad retina
+	//         trace("should be iPad retina " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
+	//     }
+	//     #elseif flash
+	//     Lib.current.stage.quality = StageQuality.LOW;
+	//     trace("should be flash " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
+	//     #end
+	// }
+
 	function createWindTf() {
 		windTf = new TextField();
 		windTf.text = "ciao";
