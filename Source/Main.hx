@@ -14,6 +14,7 @@ import haxe.Timer;
 import au.com.recyclesmart.view.ResultOverlay;
 import au.com.recyclesmart.view.ItemScrollBar;
 import nme.text.TextField;
+import nme.text.TextFormat;
 
 class Main extends Sprite {
 
@@ -55,7 +56,8 @@ class Main extends Sprite {
 		horizon  =  Lib.current.stage.stageHeight / 12 * 5;
 		previousY =  Lib.current.stage.stageHeight ;
 		
-		//bin setup
+		createBackgroundImage();
+		//bin  setup
 		drawBucket();
 		createBinImage();
 		createHalfBin();
@@ -82,47 +84,53 @@ class Main extends Sprite {
 		ballContainer.addEventListener(MouseEvent.MOUSE_DOWN, onTouchDown);
 	}
 
-	// private function initialize ():Void {
-	 
-	//     Lib.current.stage.align = StageAlign.TOP_LEFT;
-	//     Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
-	 
-	//     Global.stageWidth = Lib.current.stage.stageWidth;
-	//     Global.stageHeight = Lib.current.stage.stageHeight;
-	 
-	//     trace("Lib.current.stage.stageWidth: " + Lib.current.stage.stageWidth);
-	//     trace("Lib.current.stage.stageHeight: " + Lib.current.stage.stageHeight);
-	 
-	//     trace("Capabilities.screenResolutionX: "+ Capabilities.screenResolutionX);
-	 
-	//     /** adjust for multi res iOS devices, iPhone 3, 4 ² iPad 1&amp;2, 3(new) */
-	//     #if iphone
-	//     if (Capabilities.screenResolutionX &lt;= 320) { // iPhone classic (3 &amp; 3GS)
-	//         trace("should be classic iphone (3 &amp; 3GS) " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
-	//     }
-	//     else if (Capabilities.screenResolutionX &lt;= 640) { // iPad 1&amp;2
-	//         trace("should be iPhone 4 &amp; 4S) " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
-	//     }
-	//     else if (Capabilities.screenResolutionX &lt;= 768) { // iPad 1 &amp; 2
-	//         trace("should be iPad 1 &amp; 2 " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
-	//     }
-	//     else if (Capabilities.screenResolutionX &lt;= 1536) { // iPad retina
-	//         trace("should be iPad retina " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
-	//     }
-	//     #elseif flash
-	//     Lib.current.stage.quality = StageQuality.LOW;
-	//     trace("should be flash " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
-	//     #end
-	// }
 
 	function createWindTf() {
+
+		var windLabel:TextField = new TextField();
+		windLabel.text = "WIND";
+
+		var format:TextFormat = new TextFormat();
+        format.font = "Verdana";
+        format.color = 0x00c6ff;
+        format.size = 16;
+
+        windLabel.defaultTextFormat = format;
+        
+		windLabel.text = "WIND:";
+		windLabel.height = windLabel.textHeight + 5;
+		windLabel.width = Lib.current.stage.stageWidth / 21 * 4;
+		windLabel.y = scrollBar.y - windLabel.height;
+	 	
+		addChild(windLabel);
+
+		//WIND DIRECTIONS
 		windTf = new TextField();
+		var format:TextFormat = new TextFormat();
+
+        format.color = 0xFFFFFF;
+
+        windTf.defaultTextFormat = format;
+
 		windTf.text = "ciao";
 		windTf.height = windTf.textHeight + 5;
 		windTf.width = Lib.current.stage.stageWidth;
 		windTf.y = scrollBar.y - windTf.height;
+		windTf.x = windLabel.width;
 		windTf.text = "";
+
+	 	
 		addChild(windTf);
+	}
+
+	function createBackgroundImage() {
+
+		var background:Bitmap = new Bitmap(Assets.getBitmapData("assets/background.png"));
+		background.x = 0;
+		background.y = 0;
+		background.scaleX = background.scaleY = .5;
+
+		addChild(background);
 	}
 
 	//has to be managed
@@ -396,6 +404,7 @@ class Main extends Sprite {
 		// trace("reset");
 		ballContainer.x = startX;
 		ballContainer.y = startY;
+		ballContainer.rotation = 0;
 		wind = createWind();
 		Actuate.tween(ballContainer, .30, {alpha: 1}).ease(Linear.easeNone);
 		ballContainer.scaleX = ballContainer.scaleY = .2;
