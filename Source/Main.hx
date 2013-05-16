@@ -1,4 +1,4 @@
-import com.eclecticdesignstudio.motion.easing.Linear;
+ import com.eclecticdesignstudio.motion.easing.Linear;
 import com.eclecticdesignstudio.motion.easing.Quad;
 import com.eclecticdesignstudio.motion.MotionPath;
 import com.eclecticdesignstudio.motion.easing.Back;
@@ -34,6 +34,8 @@ class Main extends Sprite {
 	var rightEdge:Float;
 	//view components
 	var scrollBar:ItemScrollBar;
+	var containerBin:Bitmap;
+	var halfBin:Bitmap;
 	var wind:Float;
 	//to print out wind strength
 	var windTf:TextField;
@@ -44,7 +46,7 @@ class Main extends Sprite {
 
 		ballContainer = new Sprite();
 
-		var ball = new Bitmap(Assets.getBitmapData("assets/nme.png"));
+		var ball = new Bitmap(Assets.getBitmapData("assets/water-bottle.png"));
 		ball.x = - ball.width / 2;
 		ball.y = - ball.height / 2;
 		startX = Lib.current.stage.stageWidth / 2;
@@ -52,7 +54,12 @@ class Main extends Sprite {
 		top = Lib.current.stage.stageHeight / 6;
 		horizon  =  Lib.current.stage.stageHeight / 12 * 5;
 		previousY =  Lib.current.stage.stageHeight ;
+		
+		//bin setup
 		drawBucket();
+		createBinImage();
+		createHalfBin();
+
 		originalScale = .2;
 		scaleFactor = 3;
 		ballContainer.addChild(ball);
@@ -72,9 +79,41 @@ class Main extends Sprite {
 
 		createWindTf();
 		wind = createWind();
-
 		ballContainer.addEventListener(MouseEvent.MOUSE_DOWN, onTouchDown);
 	}
+
+	// private function initialize ():Void {
+	 
+	//     Lib.current.stage.align = StageAlign.TOP_LEFT;
+	//     Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
+	 
+	//     Global.stageWidth = Lib.current.stage.stageWidth;
+	//     Global.stageHeight = Lib.current.stage.stageHeight;
+	 
+	//     trace("Lib.current.stage.stageWidth: " + Lib.current.stage.stageWidth);
+	//     trace("Lib.current.stage.stageHeight: " + Lib.current.stage.stageHeight);
+	 
+	//     trace("Capabilities.screenResolutionX: "+ Capabilities.screenResolutionX);
+	 
+	//     /** adjust for multi res iOS devices, iPhone 3, 4 ² iPad 1&amp;2, 3(new) */
+	//     #if iphone
+	//     if (Capabilities.screenResolutionX &lt;= 320) { // iPhone classic (3 &amp; 3GS)
+	//         trace("should be classic iphone (3 &amp; 3GS) " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
+	//     }
+	//     else if (Capabilities.screenResolutionX &lt;= 640) { // iPad 1&amp;2
+	//         trace("should be iPhone 4 &amp; 4S) " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
+	//     }
+	//     else if (Capabilities.screenResolutionX &lt;= 768) { // iPad 1 &amp; 2
+	//         trace("should be iPad 1 &amp; 2 " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
+	//     }
+	//     else if (Capabilities.screenResolutionX &lt;= 1536) { // iPad retina
+	//         trace("should be iPad retina " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
+	//     }
+	//     #elseif flash
+	//     Lib.current.stage.quality = StageQuality.LOW;
+	//     trace("should be flash " + "Global.stageWidth " + Global.stageWidth + "stageHeight " + Global.stageHeight);
+	//     #end
+	// }
 
 	function createWindTf() {
 		windTf = new TextField();
@@ -86,6 +125,26 @@ class Main extends Sprite {
 		addChild(windTf);
 	}
 
+	//has to be managed
+	function createBinImage() {
+
+		containerBin = new Bitmap(Assets.getBitmapData("assets/yellow.png"));
+		containerBin.x = Lib.current.stage.stageWidth / 22 * 9;
+		containerBin.y = Lib.current.stage.stageHeight / 12 * 4;
+		containerBin.scaleX = containerBin.scaleY = .30;
+
+		addChild(containerBin);
+	}
+
+	function createHalfBin() {
+		trace('createHalfBin');
+		halfBin = new Bitmap(Assets.getBitmapData("assets/half-bin.png"));
+		halfBin.x = Lib.current.stage.stageWidth / 22 * 9;
+		halfBin.y = Lib.current.stage.stageHeight / 12 * 4;
+		halfBin.scaleX = halfBin.scaleY = .30;
+
+		addChild(halfBin);
+	}	
 	// User started to drag the ball
 	function onTouchDown(event) {
 		this.isDragging = true;
@@ -100,6 +159,9 @@ class Main extends Sprite {
 		//trace(event.stageX);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, onTouchUp);
 
+		//rotation tween
+		Actuate.tween (ballContainer, 1.5, { rotation: windInt(wind) } ).smartRotation ().ease(Linear.easeNone);
+		
 		if(event.stageY < startY) {
 			//Lib.current.stage.stageWidth / 21 * 9    FIRST SIDE BIN
 			leftEdge = Lib.current.stage.stageWidth / 21 * 9;
@@ -247,6 +309,10 @@ class Main extends Sprite {
 	function onEnterFrame(event) {
 		//check if falling
 		falling = previousY <= ballContainer.y;
+		// if (falling)
+			// addChild(halfBin);
+		// else
+			// removeChild(halfBin);
 		previousY = ballContainer.y;
 	}
 
@@ -288,6 +354,12 @@ class Main extends Sprite {
 		}
 
 		return	random;
+	}
+
+
+	function windInt(wind:Float):Int{
+		var rotation:Float = 360 * wind;
+		return Math.round(rotation);
 	}
 
 	function drawBucket() {
