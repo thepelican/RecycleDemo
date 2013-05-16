@@ -158,6 +158,7 @@ class Main extends Sprite {
 		//trace(event.stageX);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, onTouchUp);
 
+		Actuate.tween (ballContainer, 1.5, { rotation: windInt(wind) } ).smartRotation ();
 		if(event.stageY < startY) {
 			//Lib.current.stage.stageWidth / 21 * 9    FIRST SIDE BIN
 			leftEdge = Lib.current.stage.stageWidth / 21 * 9;
@@ -351,6 +352,12 @@ class Main extends Sprite {
 		}
 
 		return	random;
+	}
+
+
+	function windInt(wind:Float):Int{
+		var rotation:Float = 360 * wind;
+		return Math.round(rotation);
 	}
 
 	function drawBucket() {
