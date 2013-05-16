@@ -62,12 +62,12 @@ class Main extends Sprite {
 		createBinImage();
 		createHalfBin();
 
-		originalScale = .2;
+		originalScale = .4;
 		scaleFactor = 3;
 		ballContainer.addChild(ball);
 		ballContainer.x = startX;
 		ballContainer.y = startY;
-		ballContainer.scaleX = ballContainer.scaleY = .2;
+		ballContainer.scaleX = ballContainer.scaleY = .4;
 		objectToThrowHalfWidth = ballContainer.width/2;
 		objectToThrowHalfWidth = objectToThrowHalfWidth/scaleFactor;
 		addChild(ballContainer);
@@ -128,7 +128,7 @@ class Main extends Sprite {
 		var background:Bitmap = new Bitmap(Assets.getBitmapData("assets/background.png"));
 		background.x = 0;
 		background.y = 0;
-		background.scaleX = background.scaleY = .5;
+		// background.scaleX = background.scaleY = .5;
 
 		addChild(background);
 	}
@@ -139,7 +139,7 @@ class Main extends Sprite {
 		containerBin = new Bitmap(Assets.getBitmapData("assets/yellow.png"));
 		containerBin.x = Lib.current.stage.stageWidth / 22 * 9;
 		containerBin.y = Lib.current.stage.stageHeight / 12 * 4;
-		containerBin.scaleX = containerBin.scaleY = .30;
+		containerBin.scaleX = containerBin.scaleY = .6;
 
 		addChild(containerBin);
 	}
@@ -149,7 +149,7 @@ class Main extends Sprite {
 		halfBin = new Bitmap(Assets.getBitmapData("assets/half-bin.png"));
 		halfBin.x = Lib.current.stage.stageWidth / 22 * 9;
 		halfBin.y = Lib.current.stage.stageHeight / 12 * 4;
-		halfBin.scaleX = halfBin.scaleY = .30;
+		halfBin.scaleX = halfBin.scaleY = .6;
 
 		addChild(halfBin);
 	}	
@@ -407,6 +407,6 @@ class Main extends Sprite {
 		ballContainer.rotation = 0;
 		wind = createWind();
 		Actuate.tween(ballContainer, .30, {alpha: 1}).ease(Linear.easeNone);
-		ballContainer.scaleX = ballContainer.scaleY = .2;
+		ballContainer.scaleX = ballContainer.scaleY = .4;
 	}
 }
