@@ -34,6 +34,13 @@ class ResultOverlay extends Sprite{
 		image.y = (Lib.current.stage.stageHeight - image.height)/2;
 		image.x = (Lib.current.stage.stageWidth - image.width)/2;
 		addChild(image);
+
+		var logo = new Bitmap(Assets.getBitmapData("assets/logo.png"));
+		logo.width = logo.width/2;
+		logo.height = logo.height/2;
+		logo.y = image.y - (logo.height*2) ;
+		logo.x = (Lib.current.stage.stageWidth - logo.width)/2;
+		addChild(logo);
 	}
 
 }

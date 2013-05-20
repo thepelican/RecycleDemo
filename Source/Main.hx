@@ -55,7 +55,7 @@ class Main extends Sprite {
 		top = Lib.current.stage.stageHeight / 6;
 		horizon  =  Lib.current.stage.stageHeight / 12 * 5;
 		previousY =  Lib.current.stage.stageHeight ;
-		
+		ball.smoothing = true;
 
 		createBackgroundImage();
 		//bin  setup
@@ -154,7 +154,7 @@ class Main extends Sprite {
 		containerBin.x = Lib.current.stage.stageWidth / 22 * 9;
 		containerBin.y = Lib.current.stage.stageHeight / 12 * 4;
 		containerBin.scaleX = containerBin.scaleY = .30;
-
+		containerBin.smoothing = true;
 		addChild(containerBin);
 	}
 
@@ -164,7 +164,7 @@ class Main extends Sprite {
 		halfBin.x = Lib.current.stage.stageWidth / 22 * 9;
 		halfBin.y = Lib.current.stage.stageHeight / 12 * 4;
 		halfBin.scaleX = halfBin.scaleY = .30;
-
+		halfBin.smoothing = true;
 		addChild(halfBin);
 	}	
 	// User started to drag the ball
@@ -378,7 +378,6 @@ class Main extends Sprite {
 		return	random;
 	}
 
-
 	function windInt(wind:Float):Int{
 		var rotation:Float = 360 * wind;
 		return Math.round(rotation);
@@ -395,6 +394,7 @@ class Main extends Sprite {
 		graphics.moveTo(Lib.current.stage.stageWidth / 21 * 12, horizon);
 		graphics.lineTo(Lib.current.stage.stageWidth / 21 * 12, Lib.current.stage.stageHeight / 12 * 4);
 	}
+
 
 	function showResult() {
 
