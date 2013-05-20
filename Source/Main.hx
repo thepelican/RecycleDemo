@@ -1,4 +1,4 @@
- import com.eclecticdesignstudio.motion.easing.Linear;
+import com.eclecticdesignstudio.motion.easing.Linear;
 import com.eclecticdesignstudio.motion.easing.Quad;
 import com.eclecticdesignstudio.motion.MotionPath;
 import com.eclecticdesignstudio.motion.easing.Back;
@@ -56,6 +56,7 @@ class Main extends Sprite {
 		horizon  =  Lib.current.stage.stageHeight / 12 * 5;
 		previousY =  Lib.current.stage.stageHeight ;
 		
+
 		createBackgroundImage();
 		//bin  setup
 		drawBucket();
@@ -82,6 +83,8 @@ class Main extends Sprite {
 		createWindTf();
 		wind = createWind();
 		ballContainer.addEventListener(MouseEvent.MOUSE_DOWN, onTouchDown);
+
+		splashScreen();
 	}
 
 
@@ -91,7 +94,7 @@ class Main extends Sprite {
 		windLabel.text = "WIND";
 
 		var format:TextFormat = new TextFormat();
-        format.font = "Verdana";
+        format.font = "Gurmukhi MN";
         format.color = 0x00c6ff;
         format.size = 16;
 
@@ -107,7 +110,7 @@ class Main extends Sprite {
 		//WIND DIRECTIONS
 		windTf = new TextField();
 		var format:TextFormat = new TextFormat();
-
+        format.font = "Gurmukhi MN";
         format.color = 0xFFFFFF;
 
         windTf.defaultTextFormat = format;
@@ -119,7 +122,6 @@ class Main extends Sprite {
 		windTf.x = windLabel.width;
 		windTf.text = "";
 
-	 	
 		addChild(windTf);
 	}
 
@@ -133,6 +135,18 @@ class Main extends Sprite {
 		addChild(background);
 	}
 
+	function splashScreen() {
+
+		var background:Bitmap = new Bitmap(Assets.getBitmapData("assets/loading_page.png"));
+		background.x = 0;
+		background.y = 0;
+		background.scaleX = background.scaleY = .5;
+
+		addChild(background);
+		Actuate.tween(background, 1.0, {alpha: 0}).ease(Linear.easeNone).delay(3.0).onComplete(function() {
+			removeChild(background);
+		});
+	}
 	//has to be managed
 	function createBinImage() {
 
