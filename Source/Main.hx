@@ -40,24 +40,20 @@ class Main extends Sprite {
 	var wind:Float;
 	//to print out wind strength
 	var windTf:TextField;
+	var background:Bitmap;
 
 	public function new () {
 
 		super ();
 
-		ballContainer = new Sprite();
+		createBackgroundImage();
 
-		var ball = new Bitmap(Assets.getBitmapData("assets/water-bottle.png"));
-		ball.x = - ball.width / 2;
-		ball.y = - ball.height / 2;
 		startX = Lib.current.stage.stageWidth / 2;
 		startY = Lib.current.stage.stageHeight / 12 * 8;
 		top = Lib.current.stage.stageHeight / 6;
-		horizon  =  Lib.current.stage.stageHeight / 12 * 5;
-		previousY =  Lib.current.stage.stageHeight ;
-		ball.smoothing = true;
+		horizon  = Lib.current.stage.stageHeight / 12 * 5;
+		previousY = Lib.current.stage.stageHeight;
 
-		createBackgroundImage();
 		//bin  setup
 		drawBucket();
 		createBinImage();
@@ -65,28 +61,43 @@ class Main extends Sprite {
 
 		originalScale = .2;
 		scaleFactor = 3;
-		ballContainer.addChild(ball);
-		ballContainer.x = startX;
-		ballContainer.y = startY;
-		ballContainer.scaleX = ballContainer.scaleY = .2;
+
+		createBall();
+
 		objectToThrowHalfWidth = ballContainer.width/2;
 		objectToThrowHalfWidth = objectToThrowHalfWidth/scaleFactor;
-		addChild(ballContainer);
 
 		// bottom scrollbar
 
-		scrollBar = new ItemScrollBar();
-		scrollBar.setSize(Lib.current.stage.stageWidth, 80);
-		scrollBar.y = Lib.current.stage.stageHeight - scrollBar.height;
-		addChild(scrollBar);
+		createScrollbar();
 
 		createWindTf();
 		wind = createWind();
 		ballContainer.addEventListener(MouseEvent.MOUSE_DOWN, onTouchDown);
 
-		splashScreen();
+		// splashScreen();
 	}
 
+	function createBall() {
+		var ball = new Bitmap(Assets.getBitmapData("assets/water-bottle.png"));
+		ball.x = - ball.width / 2;
+		ball.y = - ball.height / 2;
+		ball.smoothing = true;
+
+		ballContainer = new Sprite();
+		ballContainer.addChild(ball);
+		ballContainer.x = startX;
+		ballContainer.y = startY;
+		ballContainer.scaleX = ballContainer.scaleY = .2;
+		addChild(ballContainer);
+	}
+
+	function createScrollbar() {
+		scrollBar = new ItemScrollBar();
+		scrollBar.setSize(Lib.current.stage.stageWidth, 80);
+		scrollBar.y = Lib.current.stage.stageHeight - scrollBar.height;
+		addChild(scrollBar);
+	}
 
 	function createWindTf() {
 
@@ -99,12 +110,12 @@ class Main extends Sprite {
         format.size = 16;
 
         windLabel.defaultTextFormat = format;
-        
+
 		windLabel.text = "WIND:";
 		windLabel.height = windLabel.textHeight + 5;
 		windLabel.width = Lib.current.stage.stageWidth / 21 * 4;
 		windLabel.y = scrollBar.y - windLabel.height;
-	 	
+
 		addChild(windLabel);
 
 		//WIND DIRECTIONS
@@ -125,26 +136,49 @@ class Main extends Sprite {
 		addChild(windTf);
 	}
 
+	var globalScaleX:Float;
+	var globalScaleY:Float;
+	var globalScale:Float;
+
 	function createBackgroundImage() {
 
-		var background:Bitmap = new Bitmap(Assets.getBitmapData("assets/background.png"));
-		background.x = 0;
-		background.y = 0;
-		background.scaleX = background.scaleY = .5;
+		//black bg
+		var bgContainer:Sprite = new Sprite();
+		bgContainer.graphics.beginFill(0x000000, 1);
+		bgContainer.graphics.drawRect(0, 0, Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
+		bgContainer.graphics.endFill();
+		addChild(bgContainer);
+
+		background = new Bitmap(Assets.getBitmapData("assets/background.png"));
+
+		globalScaleX = Lib.current.stage.stageWidth / background.width;
+		trace(globalScaleX);
+
+		globalScaleY = Lib.current.stage.stageHeight / background.height;
+		trace(globalScaleY);
+
+		globalScale = Math.max(globalScaleX, globalScaleY);
+
+		trace(globalScale);
+
+		background.scaleX = background.scaleY = globalScale;
+
+		background.x = (Lib.current.stage.stageWidth - background.width) / 2;
+		background.y = (Lib.current.stage.stageHeight - background.height) / 2;
 
 		addChild(background);
 	}
 
 	function splashScreen() {
 
-		var background:Bitmap = new Bitmap(Assets.getBitmapData("assets/loading_page.png"));
-		background.x = 0;
-		background.y = 0;
-		background.scaleX = background.scaleY = .5;
+		var splashScreen:Bitmap = new Bitmap(Assets.getBitmapData("assets/loading_page.png"));
+		splashScreen.x = (Lib.current.stage.stageWidth - splashScreen.width) / 2;
+		splashScreen.y = (Lib.current.stage.stageHeight - splashScreen.height) / 2;
+		// splashScreen.scaleX = splashScreen.scaleY = .5;
 
-		addChild(background);
-		Actuate.tween(background, 1.0, {alpha: 0}).ease(Linear.easeNone).delay(3.0).onComplete(function() {
-			removeChild(background);
+		addChild(splashScreen);
+		Actuate.tween(splashScreen, 1.0, {alpha: 0}).ease(Linear.easeNone).delay(3.0).onComplete(function() {
+			removeChild(splashScreen);
 		});
 	}
 	//has to be managed
@@ -159,14 +193,14 @@ class Main extends Sprite {
 	}
 
 	function createHalfBin() {
-		trace('createHalfBin');
+		//trace('createHalfBin');
 		halfBin = new Bitmap(Assets.getBitmapData("assets/half-bin.png"));
 		halfBin.x = Lib.current.stage.stageWidth / 22 * 9;
 		halfBin.y = Lib.current.stage.stageHeight / 12 * 4;
 		halfBin.scaleX = halfBin.scaleY = .30;
 		halfBin.smoothing = true;
 		addChild(halfBin);
-	}	
+	}
 	// User started to drag the ball
 	function onTouchDown(event) {
 		this.isDragging = true;
@@ -183,7 +217,7 @@ class Main extends Sprite {
 
 		//rotation tween
 		Actuate.tween (ballContainer, 1.5, { rotation: windInt(wind) } ).smartRotation ().ease(Linear.easeNone);
-		
+
 		if(event.stageY < startY) {
 			//Lib.current.stage.stageWidth / 21 * 9    FIRST SIDE BIN
 			leftEdge = Lib.current.stage.stageWidth / 21 * 9;
@@ -331,10 +365,13 @@ class Main extends Sprite {
 	function onEnterFrame(event) {
 		//check if falling
 		falling = previousY <= ballContainer.y;
-		// if (falling)
-			// addChild(halfBin);
-		// else
-			// removeChild(halfBin);
+		if (falling)
+			addChild(halfBin);
+		else {
+			if(contains(halfBin))
+				removeChild(halfBin);
+		}
+
 		previousY = ballContainer.y;
 	}
 

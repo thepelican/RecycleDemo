@@ -19,7 +19,7 @@ class Model {
 
         throwableItems = new Array<ThrowableItem>();
 
-        trace('current items: ');
+        // trace('current items: ');
     }
 
     public static function getInstance():Model
