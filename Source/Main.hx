@@ -26,6 +26,8 @@ class Main extends Sprite {
 	var objectToThrowHalfWidth:Float;
 	var horizon:Float;
 	var scaleFactor:Float;
+	var scaleFactorAfterTouchedGround:Float;
+
 	var inTheBin:Bool;
 	var falling:Bool;
 	var previousY:Float;
@@ -67,7 +69,7 @@ class Main extends Sprite {
 
 		originalScale = globalScale;
 		scaleFactor = 3;
-
+		scaleFactorAfterTouchedGround = 1.3;
 		createBall();
 
 		objectToThrowHalfWidth = ballContainer.width/2;
@@ -156,14 +158,14 @@ class Main extends Sprite {
 		background = new Bitmap(Assets.getBitmapData("assets/background.png"));
 
 		globalScaleX = Lib.current.stage.stageWidth / background.width;
-		trace(globalScaleX);
+		// trace(globalScaleX);
 
 		globalScaleY = Lib.current.stage.stageHeight / background.height;
-		trace(globalScaleY);
+		// trace(globalScaleY);
 
 		globalScale = Math.max(globalScaleX, globalScaleY);
 
-		trace(globalScale);
+		// trace(globalScale);
 
 		background.scaleX = background.scaleY = globalScale;
 
@@ -278,8 +280,10 @@ class Main extends Sprite {
 		Actuate.tween(ballContainer, 1.50, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
 			if (offset < Lib.current.stage.stageWidth / 2) {
 				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x-objectToThrowHalfWidth}).ease(Linear.easeNone);
+				Actuate.tween(ballContainer, .5, {scaleX: ballContainer.scaleX / scaleFactorAfterTouchedGround, scaleY: ballContainer.scaleX / scaleFactorAfterTouchedGround}).ease(Linear.easeNone);
 			} else {
 				Actuate.tween(ballContainer, .5, {y: ballContainer.y-(objectToThrowHalfWidth/2), x: ballContainer.x+objectToThrowHalfWidth}).ease(Linear.easeNone);
+				Actuate.tween(ballContainer, .5, {scaleX: ballContainer.scaleX / scaleFactorAfterTouchedGround, scaleY: ballContainer.scaleX / scaleFactorAfterTouchedGround}).ease(Linear.easeNone);
 			}
 		});
 
@@ -318,13 +322,15 @@ class Main extends Sprite {
 		if (offset < Lib.current.stage.stageWidth / 2) {
 			Actuate.tween(ballContainer, 1.70, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
 				Actuate.tween(ballContainer, 1.5, {y: ballContainer.y - (objectToThrowHalfWidth / 2), x: ballContainer.x - objectToThrowHalfWidth}, false).ease(Linear.easeNone);
-				// Actuate.tween(ballContainer, 1.5, {scaleX: ballContainer.scaleX / scaleFactor, scaleY: ballContainer.scaleX / scaleFactor}).ease(Linear.easeNone);
+				Actuate.tween(ballContainer, 1.5, {scaleX: ballContainer.scaleX / scaleFactorAfterTouchedGround, scaleY: ballContainer.scaleX / scaleFactorAfterTouchedGround}).ease(Linear.easeNone);
 				});
 
 			} else{
 				Actuate.tween(ballContainer, 1.70, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
 					Actuate.tween(ballContainer, 1.5, {y: ballContainer.y - (objectToThrowHalfWidth / 2), x: ballContainer.x + objectToThrowHalfWidth}, false).ease(Linear.easeNone);
-					});
+					Actuate.tween(ballContainer, 1.5, {scaleX: ballContainer.scaleX / scaleFactorAfterTouchedGround, scaleY: ballContainer.scaleX / scaleFactorAfterTouchedGround}).ease(Linear.easeNone);
+
+			});
 			}
 
 		Timer.delay(callback(reset), 3500);
@@ -387,35 +393,35 @@ class Main extends Sprite {
 
 		var random:Float = Math.random();
 
-		// if (random < 0.14) {
-		// 	//strong left
-		// 	windTf.text = 'strong FROM RIGHT';
-		// 	random = -0.7;
-		// } else if (random > 0.14 && random < 0.29) {
-		// 	//middle left
-		// 	windTf.text = 'middle FROM RIGHT';
-		// 	random = -0.55;
-		// } else if (random > 0.29 && random < 0.43) {
-		// 	//light left
-		// 	windTf.text = 'light FROM RIGHT';
-		// 	random = -0.3;
-		// } else if (random > 0.43 && random < 0.57) {
+		if (random < 0.14) {
+			//strong left
+			windTf.text = 'strong from RIGHT';
+			random = -0.7;
+		} else if (random > 0.14 && random < 0.29) {
+			//middle left
+			windTf.text = 'middle from RIGHT';
+			random = -0.55;
+		} else if (random > 0.29 && random < 0.43) {
+			//light left
+			windTf.text = 'light from RIGHT';
+			random = -0.3;
+		} else if (random > 0.43 && random < 0.57) {
 			//light left
 			windTf.text = 'NO wind';
 			random = 0.0;
-		// } else if (random > 0.57 && random < 0.72) {
-		// 	//light right
-		// 	windTf.text = 'light FROM LEFT';
-		// 	random = 0.3;
-		// } else if (random > 0.72 && random < 0.86) {
-		// 	//middle right
-		// 	windTf.text = 'middle FROM LEFT';
-		// 	random = 0.55;
-		// } else if (random > 0.86 && random < 1.0) {
-		// 	//strogn right
-		// 	windTf.text = 'strong FROM LEFT';
-		// 	random = 0.7;
-		// }
+		} else if (random > 0.57 && random < 0.72) {
+			//light right
+			windTf.text = 'light from LEFT';
+			random = 0.3;
+		} else if (random > 0.72 && random < 0.86) {
+			//middle right
+			windTf.text = 'middle from LEFT';
+			random = 0.55;
+		} else if (random > 0.86 && random < 1.0) {
+			//strogn right
+			windTf.text = 'strong from LEFT';
+			random = 0.7;
+		}
 
 		return	random;
 	}
