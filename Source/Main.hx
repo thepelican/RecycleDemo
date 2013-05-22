@@ -42,6 +42,12 @@ class Main extends Sprite {
 	var windTf:TextField;
 	var background:Bitmap;
 
+
+	//scaling factor
+	var globalScaleX:Float;
+	var globalScaleY:Float;
+	var globalScale:Float;
+
 	public function new () {
 
 		super ();
@@ -59,7 +65,7 @@ class Main extends Sprite {
 		createBinImage();
 		createHalfBin();
 
-		originalScale = .2;
+		originalScale = globalScale;
 		scaleFactor = 3;
 
 		createBall();
@@ -88,7 +94,7 @@ class Main extends Sprite {
 		ballContainer.addChild(ball);
 		ballContainer.x = startX;
 		ballContainer.y = startY;
-		ballContainer.scaleX = ballContainer.scaleY = .2;
+		ballContainer.scaleX = ballContainer.scaleY = globalScale;
 		addChild(ballContainer);
 	}
 
@@ -106,8 +112,8 @@ class Main extends Sprite {
 
 		var format:TextFormat = new TextFormat();
         format.font = "Gurmukhi MN";
-        format.color = 0x00c6ff;
-        format.size = 16;
+        format.color = 0x0c75c6;
+        format.size = 36;
 
         windLabel.defaultTextFormat = format;
 
@@ -122,7 +128,8 @@ class Main extends Sprite {
 		windTf = new TextField();
 		var format:TextFormat = new TextFormat();
         format.font = "Gurmukhi MN";
-        format.color = 0xFFFFFF;
+        format.color = 0x000000;
+        format.size = 36;
 
         windTf.defaultTextFormat = format;
 
@@ -136,18 +143,15 @@ class Main extends Sprite {
 		addChild(windTf);
 	}
 
-	var globalScaleX:Float;
-	var globalScaleY:Float;
-	var globalScale:Float;
 
 	function createBackgroundImage() {
 
 		//black bg
-		var bgContainer:Sprite = new Sprite();
-		bgContainer.graphics.beginFill(0x000000, 1);
-		bgContainer.graphics.drawRect(0, 0, Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
-		bgContainer.graphics.endFill();
-		addChild(bgContainer);
+		// var bgContainer:Sprite = new Sprite();
+		// bgContainer.graphics.beginFill(0x000000, 1);
+		// bgContainer.graphics.drawRect(0, 0, Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
+		// bgContainer.graphics.endFill();
+		// addChild(bgContainer);
 
 		background = new Bitmap(Assets.getBitmapData("assets/background.png"));
 
@@ -187,7 +191,7 @@ class Main extends Sprite {
 		containerBin = new Bitmap(Assets.getBitmapData("assets/yellow.png"));
 		containerBin.x = Lib.current.stage.stageWidth / 22 * 9;
 		containerBin.y = Lib.current.stage.stageHeight / 12 * 4;
-		containerBin.scaleX = containerBin.scaleY = .30;
+		containerBin.scaleX = containerBin.scaleY = globalScale;
 		containerBin.smoothing = true;
 		addChild(containerBin);
 	}
@@ -197,7 +201,7 @@ class Main extends Sprite {
 		halfBin = new Bitmap(Assets.getBitmapData("assets/half-bin.png"));
 		halfBin.x = Lib.current.stage.stageWidth / 22 * 9;
 		halfBin.y = Lib.current.stage.stageHeight / 12 * 4;
-		halfBin.scaleX = halfBin.scaleY = .30;
+		halfBin.scaleX = halfBin.scaleY = globalScale;
 		halfBin.smoothing = true;
 		addChild(halfBin);
 	}
@@ -314,6 +318,7 @@ class Main extends Sprite {
 		if (offset < Lib.current.stage.stageWidth / 2) {
 			Actuate.tween(ballContainer, 1.70, {scaleX: originalScale / scaleFactor, scaleY: originalScale / scaleFactor}).ease(Linear.easeNone).onComplete(function() {
 				Actuate.tween(ballContainer, 1.5, {y: ballContainer.y - (objectToThrowHalfWidth / 2), x: ballContainer.x - objectToThrowHalfWidth}, false).ease(Linear.easeNone);
+				// Actuate.tween(ballContainer, 1.5, {scaleX: ballContainer.scaleX / scaleFactor, scaleY: ballContainer.scaleX / scaleFactor}).ease(Linear.easeNone);
 				});
 
 			} else{
@@ -382,35 +387,35 @@ class Main extends Sprite {
 
 		var random:Float = Math.random();
 
-		if (random < 0.14) {
-			//strong left
-			windTf.text = 'strong FROM RIGHT';
-			random = -0.7;
-		} else if (random > 0.14 && random < 0.29) {
-			//middle left
-			windTf.text = 'middle FROM RIGHT';
-			random = -0.55;
-		} else if (random > 0.29 && random < 0.43) {
-			//light left
-			windTf.text = 'light FROM RIGHT';
-			random = -0.3;
-		} else if (random > 0.43 && random < 0.57) {
+		// if (random < 0.14) {
+		// 	//strong left
+		// 	windTf.text = 'strong FROM RIGHT';
+		// 	random = -0.7;
+		// } else if (random > 0.14 && random < 0.29) {
+		// 	//middle left
+		// 	windTf.text = 'middle FROM RIGHT';
+		// 	random = -0.55;
+		// } else if (random > 0.29 && random < 0.43) {
+		// 	//light left
+		// 	windTf.text = 'light FROM RIGHT';
+		// 	random = -0.3;
+		// } else if (random > 0.43 && random < 0.57) {
 			//light left
 			windTf.text = 'NO wind';
 			random = 0.0;
-		} else if (random > 0.57 && random < 0.72) {
-			//light right
-			windTf.text = 'light FROM LEFT';
-			random = 0.3;
-		} else if (random > 0.72 && random < 0.86) {
-			//middle right
-			windTf.text = 'middle FROM LEFT';
-			random = 0.55;
-		} else if (random > 0.86 && random < 1.0) {
-			//strogn right
-			windTf.text = 'strong FROM LEFT';
-			random = 0.7;
-		}
+		// } else if (random > 0.57 && random < 0.72) {
+		// 	//light right
+		// 	windTf.text = 'light FROM LEFT';
+		// 	random = 0.3;
+		// } else if (random > 0.72 && random < 0.86) {
+		// 	//middle right
+		// 	windTf.text = 'middle FROM LEFT';
+		// 	random = 0.55;
+		// } else if (random > 0.86 && random < 1.0) {
+		// 	//strogn right
+		// 	windTf.text = 'strong FROM LEFT';
+		// 	random = 0.7;
+		// }
 
 		return	random;
 	}
@@ -458,6 +463,6 @@ class Main extends Sprite {
 		ballContainer.rotation = 0;
 		wind = createWind();
 		Actuate.tween(ballContainer, .30, {alpha: 1}).ease(Linear.easeNone);
-		ballContainer.scaleX = ballContainer.scaleY = .2;
+		ballContainer.scaleX = ballContainer.scaleY = globalScale;
 	}
 }
