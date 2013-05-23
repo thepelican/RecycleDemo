@@ -39,6 +39,8 @@ class Main extends Sprite {
 	var scrollBar:ItemScrollBar;
 	var containerBin:Bitmap;
 	var halfBin:Bitmap;
+	var yogaWindGirl:Bitmap;
+
 	var wind:Float;
 	//to print out wind strength
 	var windTf:TextField;
@@ -78,6 +80,8 @@ class Main extends Sprite {
 		// bottom scrollbar
 
 		createScrollbar();
+		
+		createYogaGirl();
 
 		createWindTf();
 		wind = createWind();
@@ -386,43 +390,72 @@ class Main extends Sprite {
 		previousY = ballContainer.y;
 	}
 
+	function createYogaGirl(){
+		yogaWindGirl = new Bitmap(Assets.getBitmapData("assets/yoga_strong_right.png"));
+	}
+
+	function setYogaGirlCoordinates(){
+		yogaWindGirl.y = Lib.current.stage.stageHeight / 12 * 3;
+		yogaWindGirl.x = Lib.current.stage.stageWidth / 12 * 2;
+
+	}
+
 	function createWind():Float {
 
 		//POSITIVE NUMBER: WIND PUSH FROM RIGHT LO LEFT
 		//NEGATIVE NUMBER : WIND PUSH FROM LEFT TO RIGHT
-
 		var random:Float = Math.random();
+		
+		// if(contains(yogaWindGirl)){
+		// 	removeChild(yogaWindGirl); 
+		// }
 
 		if (random < 0.14) {
 			//strong left
 			windTf.text = 'strong from RIGHT';
+			yogaWindGirl = new Bitmap(Assets.getBitmapData("assets/yoga_strong_right.png"));
+
 			random = -0.7;
 		} else if (random > 0.14 && random < 0.29) {
 			//middle left
-			windTf.text = 'middle from RIGHT';
+			windTf.text = 'medium from RIGHT';
+			yogaWindGirl = new Bitmap(Assets.getBitmapData("assets/yoga_medium_right.png"));
+
 			random = -0.55;
 		} else if (random > 0.29 && random < 0.43) {
 			//light left
 			windTf.text = 'light from RIGHT';
+			yogaWindGirl = new Bitmap(Assets.getBitmapData("assets/yoga_light_right.png"));
+
 			random = -0.3;
 		} else if (random > 0.43 && random < 0.57) {
 			//light left
 			windTf.text = 'NO wind';
+			yogaWindGirl = new Bitmap(Assets.getBitmapData("assets/yoga_light_no_wind.png"));
+
 			random = 0.0;
 		} else if (random > 0.57 && random < 0.72) {
 			//light right
 			windTf.text = 'light from LEFT';
+			yogaWindGirl = new Bitmap(Assets.getBitmapData("assets/yoga_light_left.png"));
+
 			random = 0.3;
 		} else if (random > 0.72 && random < 0.86) {
 			//middle right
-			windTf.text = 'middle from LEFT';
+			windTf.text = 'medium from LEFT';
+			yogaWindGirl = new Bitmap(Assets.getBitmapData("assets/yoga_medium_left.png"));
+
 			random = 0.55;
 		} else if (random > 0.86 && random < 1.0) {
 			//strogn right
 			windTf.text = 'strong from LEFT';
+			yogaWindGirl = new Bitmap(Assets.getBitmapData("assets/yoga_strong_left.png"));
+
 			random = 0.7;
 		}
-
+		addChild(yogaWindGirl);
+		addChild(ballContainer);
+		setYogaGirlCoordinates();
 		return	random;
 	}
 
@@ -467,8 +500,15 @@ class Main extends Sprite {
 		ballContainer.x = startX;
 		ballContainer.y = startY;
 		ballContainer.rotation = 0;
-		wind = createWind();
-		Actuate.tween(ballContainer, .30, {alpha: 1}).ease(Linear.easeNone);
+		Actuate.tween(ballContainer, .40, {alpha: 1}).ease(Linear.easeNone);
+		Actuate.tween(yogaWindGirl, .5, {alpha: 0}).ease(Linear.easeNone).onComplete(function(){
+			
+			wind = createWind();
+			Actuate.tween(yogaWindGirl, 1, {alpha: 1}).ease(Linear.easeNone);
+
+		});
+
+
 		ballContainer.scaleX = ballContainer.scaleY = globalScale;
 	}
 }
