@@ -7,6 +7,15 @@ import nme.Lib;
 import au.com.recyclesmart.eventbus.CentralDispatcher;
 import au.com.recyclesmart.model.Model;
 
+import au.com.recyclesmart.vo.ThrowableVO;
+import au.com.recyclesmart.view.ThrowableItem;
+
+/**
+*	A scrollable horizontal list to display a collection of items that user can throw in the bin.
+*
+*	@param w Float The desired witdth for the component
+*	@param h Float The desired height for the component
+*/
 class ItemScrollBar extends Sprite {
 
 	//var model:Array;
@@ -16,20 +25,53 @@ class ItemScrollBar extends Sprite {
 	var panelStartX:Float;
 	var maxX:Float;
 	var minX:Float;
+	var marginBetweenItems:Float;
 
 	private var model:Model;
 
 	private var dispatcher:CentralDispatcher;
 
-	public function new () {
+	public function new(w:Float, h:Float) {
 		super();
 		this.padding = 5;
+		this.marginBetweenItems = 10;
 
 		dispatcher = CentralDispatcher.getInstance();
 		model = Model.getInstance();
+
+		draw(w, h);
+
+		loadItems();
+
+		addEventListener(MouseEvent.MOUSE_DOWN, beginDrag);
 	}
 
-	public function setSize(newWidth:Float, newHeight:Float) {
+	public function loadItems():Void {
+		var items:Array<ThrowableVO> = model.getThrowableVOs();
+		var numItems = items.length;
+
+		for(i in 0...numItems) {
+
+			var item:ThrowableItem = new ThrowableItem(items[i], this.height);
+			item.x = padding + i * (item.width + marginBetweenItems);
+
+			// Quando l'utente tocca un nuovo oggetto chiamiamo la nostra funzione changeItem
+			item.addEventListener(MouseEvent.MOUSE_DOWN, changeItem);
+			scrollingPanel.addChild(item);
+		}
+	}
+
+	/**
+	*	Estraiamo il nostro oggetto base (contenente le info sull'oggetto come il tipo, o il tipo di cestino con cui e' compatibile)
+	* 	e lo salviamo nel modello centrale, cosi' lui lancera' un bell'evento, e chi sta in ascolto agira' di conseguenza
+	*	come ad esempio il Main aggiornera' l'icona dell'oggetto da tirare
+	*/
+	private function changeItem(e:MouseEvent):Void {
+		var selectedItem:ThrowableItem = e.target;
+		model.setCurrentItem(selectedItem.getData());
+	}
+
+	private function draw(newWidth:Float, newHeight:Float) {
 		//draw bg
 		graphics.beginFill(0, 1);
 		graphics.drawRect(0, 0, newWidth, newHeight);
@@ -39,8 +81,6 @@ class ItemScrollBar extends Sprite {
 
 		this.maxX = 0;
 		this.minX = newWidth - (scrollingPanel.width + 2 * this.padding);
-
-		addEventListener(MouseEvent.MOUSE_DOWN, beginDrag);
 	}
 
 	function drawScrollingPanel(w:Float, h:Float) {
@@ -73,10 +113,5 @@ class ItemScrollBar extends Sprite {
 
 	function finishDrag(e:MouseEvent) {
 		removeEventListener(MouseEvent.MOUSE_MOVE, dragMove);
-	}
-
-	//set the current collection of items to display
-	function setModel(model:Array<String>) {
-		//this.model = model;
 	}
 }

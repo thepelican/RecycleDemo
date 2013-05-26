@@ -10,11 +10,15 @@ import nme.Assets;
 import nme.Lib;
 import nme.events.MouseEvent;
 import nme.events.Event;
-import haxe.Timer;
-import au.com.recyclesmart.view.ResultOverlay;
-import au.com.recyclesmart.view.ItemScrollBar;
 import nme.text.TextField;
 import nme.text.TextFormat;
+import haxe.Timer;
+
+import au.com.recyclesmart.view.ResultOverlay;
+import au.com.recyclesmart.view.ItemScrollBar;
+import au.com.recyclesmart.eventbus.CentralDispatcher;
+import au.com.recyclesmart.events.AppEvent;
+import au.com.recyclesmart.model.Model;
 
 class Main extends Sprite {
 
@@ -50,9 +54,18 @@ class Main extends Sprite {
 	var globalScaleY:Float;
 	var globalScale:Float;
 
+	//global event dispatcher
+	private var dispatcher:CentralDispatcher;
+
+	//global model
+	private var model:Model;
+
 	public function new () {
 
 		super ();
+
+		dispatcher = CentralDispatcher.getInstance();
+		model = Model.getInstance();
 
 		createBackgroundImage();
 
@@ -83,6 +96,8 @@ class Main extends Sprite {
 		wind = createWind();
 		ballContainer.addEventListener(MouseEvent.MOUSE_DOWN, onTouchDown);
 
+		dispatcher.addEventListener(AppEvent.NEW_ITEM_SELECTED, changeItem);
+
 		// splashScreen();
 	}
 
@@ -101,8 +116,7 @@ class Main extends Sprite {
 	}
 
 	function createScrollbar() {
-		scrollBar = new ItemScrollBar();
-		scrollBar.setSize(Lib.current.stage.stageWidth, 80);
+		scrollBar = new ItemScrollBar(Lib.current.stage.stageWidth, 80);
 		scrollBar.y = Lib.current.stage.stageHeight - scrollBar.height;
 		addChild(scrollBar);
 	}
@@ -445,8 +459,6 @@ class Main extends Sprite {
 
 
 	function showResult() {
-
-		// trace('showResult');
 		var result = new ResultOverlay();
 		addChild(result);
 		result.setSize();
@@ -463,12 +475,17 @@ class Main extends Sprite {
 	}
 
 	function reset() {
-		// trace("reset");
 		ballContainer.x = startX;
 		ballContainer.y = startY;
 		ballContainer.rotation = 0;
 		wind = createWind();
 		Actuate.tween(ballContainer, .30, {alpha: 1}).ease(Linear.easeNone);
 		ballContainer.scaleX = ballContainer.scaleY = globalScale;
+	}
+
+	private function changeItem(e:AppEvent):Void {
+		ballContainer.graphics.beginFill(model.getCurrentItem().bgColor, 1);
+		ballContainer.graphics.drawRect(-ballContainer.width / 2, -ballContainer.height / 2, ballContainer.width, ballContainer.height);
+		ballContainer.graphics.endFill();
 	}
 }
