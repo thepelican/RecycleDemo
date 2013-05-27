@@ -29,10 +29,10 @@ class ThrowableItem extends Sprite {
         _bitmap.smoothing = true;
         addChild(_bitmap);
 
-        graphics.clear();
-        graphics.beginFill(_data.bgColor, 1);
-        graphics.drawRect(0, 0, _bitmap.height / 2, _bitmap.height / 2);
-        graphics.endFill();
+        // graphics.clear();
+        // graphics.beginFill(_data.bgColor, 1);
+        // graphics.drawRect(0, 0, _bitmap.height / 2, _bitmap.height / 2);
+        // graphics.endFill();
     }
 
     public function getData():ThrowableVO {

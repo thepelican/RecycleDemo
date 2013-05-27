@@ -117,8 +117,8 @@ class Main extends Sprite {
 	}
 
 	function createScrollbar() {
-		scrollBar = new ItemScrollBar(Lib.current.stage.stageWidth, 80);
-		scrollBar.y = Lib.current.stage.stageHeight - scrollBar.height;
+		scrollBar = new ItemScrollBar(Lib.current.stage.stageWidth, 160);
+		scrollBar.y = Lib.current.stage.stageHeight - 160;
 		addChild(scrollBar);
 	}
 

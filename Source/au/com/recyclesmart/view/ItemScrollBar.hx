@@ -28,7 +28,6 @@ class ItemScrollBar extends Sprite {
 	var marginBetweenItems:Float;
 
 	private var model:Model;
-
 	private var dispatcher:CentralDispatcher;
 
 	public function new(w:Float, h:Float) {
@@ -52,7 +51,8 @@ class ItemScrollBar extends Sprite {
 
 		for(i in 0...numItems) {
 			var item:ThrowableItem = new ThrowableItem(items[i]);
-			item.x = padding + i * (item.width + marginBetweenItems);
+			item.x = 75 +  padding + i * (item.width + marginBetweenItems);
+			item.y = item.height / 2 + padding;
 
 			// Quando l'utente tocca un nuovo oggetto chiamiamo la nostra funzione changeItem
 			item.addEventListener(MouseEvent.MOUSE_DOWN, changeItem);
