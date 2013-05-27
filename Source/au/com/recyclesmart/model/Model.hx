@@ -41,17 +41,19 @@ class Model {
     *   Later on we will probably load from an external file/api instead of hard-coding it
     */
     private function createDummyItems():Void {
-        var dummyItem1:ThrowableVO = new ThrowableVO("bottle", Bin.YELLOW,0xFFFF00);
         var dummyItem2:ThrowableVO = new ThrowableVO("pizza", Bin.RED, 0xFF0000);
+        var dummyItem1:ThrowableVO = new ThrowableVO("water-bottle", Bin.YELLOW,0xFFFF00);
         var dummyItem3:ThrowableVO = new ThrowableVO("newspaper", Bin.BLUE, 0x0000FF);
         var dummyItem4:ThrowableVO = new ThrowableVO("can", Bin.GREEN, 0x00FF00);
 
         throwableItems = new Array<ThrowableVO>();
 
-        throwableItems.push(dummyItem1);
         throwableItems.push(dummyItem2);
+        throwableItems.push(dummyItem1);
         throwableItems.push(dummyItem3);
         throwableItems.push(dummyItem4);
+
+        _currentItem = throwableItems[1];
     }
 
     // Our first bin will be YELLOW, but we can change it each time with the setter method
@@ -78,7 +80,7 @@ class Model {
         // Questa funzione viene chiamata dalla barra degli oggetti, quando l'utente tocca un oggetto diverso da quello corrente.
         // Quindi aggiorniamo il modello con il nuovo oggetto
 
-        this._currentItem = newItem;
+        _currentItem = newItem;
 
         // E poi lanciamo 1 evento globale di tipo NEW_ITEM_SELECTED cosi' il Main cambiera' l'icona dell'oggetto da tirare con quella selezionata.
 

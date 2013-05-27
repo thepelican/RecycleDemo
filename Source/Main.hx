@@ -19,13 +19,14 @@ import au.com.recyclesmart.view.ItemScrollBar;
 import au.com.recyclesmart.eventbus.CentralDispatcher;
 import au.com.recyclesmart.events.AppEvent;
 import au.com.recyclesmart.model.Model;
+import au.com.recyclesmart.view.ThrowableItem;
 
 class Main extends Sprite {
 
 	var isDragging = false;
 	var startX:Float;
 	var startY:Float;
-	var ballContainer:Sprite;
+	var ballContainer:ThrowableItem;
 	var top:Float;
 	var objectToThrowHalfWidth:Float;
 	var horizon:Float;
@@ -85,6 +86,7 @@ class Main extends Sprite {
 		originalScale = globalScale;
 		scaleFactor = 3;
 		scaleFactorAfterTouchedGround = 1.3;
+
 		createBall();
 
 		objectToThrowHalfWidth = ballContainer.width/2;
@@ -106,16 +108,11 @@ class Main extends Sprite {
 	}
 
 	function createBall() {
-		var ball = new Bitmap(Assets.getBitmapData("assets/water-bottle.png"));
-		ball.x = - ball.width / 2;
-		ball.y = - ball.height / 2;
-		ball.smoothing = true;
-
-		ballContainer = new Sprite();
-		ballContainer.addChild(ball);
+		ballContainer = new ThrowableItem(model.getCurrentItem());
 		ballContainer.x = startX;
 		ballContainer.y = startY;
 		ballContainer.scaleX = ballContainer.scaleY = globalScale;
+
 		addChild(ballContainer);
 	}
 
@@ -307,7 +304,7 @@ class Main extends Sprite {
 		if (offset > leftEdge + objectToThrowHalfWidth && offset < rightEdge - objectToThrowHalfWidth) {
 			Timer.delay(callback(showResult), 2000);
 
-			trace('current bin: ' + model.getCurrentBinType() + ' - item type: ' + model.getCurrentItem().bin);
+			//trace('current bin: ' + model.getCurrentBinType() + ' - item type: ' + model.getCurrentItem().bin);
 
 		} else {
 			Timer.delay(callback(reset), 3500);
@@ -522,8 +519,10 @@ class Main extends Sprite {
 	}
 
 	private function changeItem(e:AppEvent):Void {
-		ballContainer.graphics.beginFill(model.getCurrentItem().bgColor, 1);
-		ballContainer.graphics.drawRect(-ballContainer.width / 2, -ballContainer.height / 2, ballContainer.width, ballContainer.height);
-		ballContainer.graphics.endFill();
+		// ballContainer.graphics.beginFill(model.getCurrentItem().bgColor, 1);
+		// ballContainer.graphics.drawRect(-ballContainer.width / 2, -ballContainer.height / 2, ballContainer.width, ballContainer.height);
+		// ballContainer.graphics.endFill();
+
+		ballContainer.setData(model.getCurrentItem());
 	}
 }

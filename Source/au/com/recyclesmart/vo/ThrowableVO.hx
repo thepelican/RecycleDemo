@@ -16,11 +16,7 @@ class ThrowableVO {
     public function new(type:String, bin:String, bgColor:Int) {
         this.bin = bin;
         this.type = type;
-        this.iconPath = 'images/' + type + '.png';
+        this.iconPath = 'assets/' + type + '.png';
         this.bgColor = bgColor;
-    }
-
-    public function toString() {
-        return "[ThrowableVO "+ type +"]";
     }
 }

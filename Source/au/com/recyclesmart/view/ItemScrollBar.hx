@@ -51,8 +51,7 @@ class ItemScrollBar extends Sprite {
 		var numItems = items.length;
 
 		for(i in 0...numItems) {
-
-			var item:ThrowableItem = new ThrowableItem(items[i], this.height);
+			var item:ThrowableItem = new ThrowableItem(items[i]);
 			item.x = padding + i * (item.width + marginBetweenItems);
 
 			// Quando l'utente tocca un nuovo oggetto chiamiamo la nostra funzione changeItem
