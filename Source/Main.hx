@@ -93,7 +93,7 @@ class Main extends Sprite {
 		// bottom scrollbar
 
 		createScrollbar();
-		
+
 		createYogaGirl();
 
 		createWindTf();
@@ -165,13 +165,6 @@ class Main extends Sprite {
 
 
 	function createBackgroundImage() {
-
-		//black bg
-		// var bgContainer:Sprite = new Sprite();
-		// bgContainer.graphics.beginFill(0x000000, 1);
-		// bgContainer.graphics.drawRect(0, 0, Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
-		// bgContainer.graphics.endFill();
-		// addChild(bgContainer);
 
 		background = new Bitmap(Assets.getBitmapData("assets/background.png"));
 
@@ -309,9 +302,13 @@ class Main extends Sprite {
 			Actuate.tween(ballContainer, .05, {alpha: 0}).delay(1.5).ease(Linear.easeNone);	//disapper
 		}
 
-		//show the result ok ionly if inthe bin
-		if (offset > leftEdge + objectToThrowHalfWidth && offset < rightEdge - objectToThrowHalfWidth){
+		//show the result ok only if in the bin
+
+		if (offset > leftEdge + objectToThrowHalfWidth && offset < rightEdge - objectToThrowHalfWidth) {
 			Timer.delay(callback(showResult), 2000);
+
+			trace('current bin: ' + model.getCurrentBinType() + ' - item type: ' + model.getCurrentItem().bin);
+
 		} else {
 			Timer.delay(callback(reset), 3500);
 		}
@@ -419,9 +416,9 @@ class Main extends Sprite {
 		//POSITIVE NUMBER: WIND PUSH FROM RIGHT LO LEFT
 		//NEGATIVE NUMBER : WIND PUSH FROM LEFT TO RIGHT
 		var random:Float = Math.random();
-		
+
 		// if(contains(yogaWindGirl)){
-		// 	removeChild(yogaWindGirl); 
+		// 	removeChild(yogaWindGirl);
 		// }
 
 		if (random < 0.14) {
@@ -493,10 +490,11 @@ class Main extends Sprite {
 
 	function showResult() {
 		var result = new ResultOverlay();
-		addChild(result);
 		result.setSize();
-		result.setScore(true);
 		result.alpha = 0;
+		result.setScore(model.getCurrentBinType() == model.getCurrentItem().bin);
+
+		addChild(result);
 
 		Actuate.tween(result, 1.5, {alpha: 1}).ease(Linear.easeNone).onComplete(function() {
 			 Actuate.tween(result, 1.0, {alpha: 0}).ease(Linear.easeNone).delay(1.0).onComplete(function() {
@@ -513,7 +511,7 @@ class Main extends Sprite {
 		ballContainer.rotation = 0;
 		Actuate.tween(ballContainer, .40, {alpha: 1}).ease(Linear.easeNone);
 		Actuate.tween(yogaWindGirl, .5, {alpha: 0}).ease(Linear.easeNone).onComplete(function(){
-			
+
 			wind = createWind();
 			Actuate.tween(yogaWindGirl, 1, {alpha: 1}).ease(Linear.easeNone);
 
