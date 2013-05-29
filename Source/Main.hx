@@ -103,8 +103,8 @@ class Main extends Sprite {
 		ballContainer.addEventListener(MouseEvent.MOUSE_DOWN, onTouchDown);
 
 		dispatcher.addEventListener(AppEvent.NEW_ITEM_SELECTED, changeItem);
+		splashScreen();
 
-		// splashScreen();
 	}
 
 	function createBall() {
@@ -186,6 +186,9 @@ class Main extends Sprite {
 	function splashScreen() {
 
 		var splashScreen:Bitmap = new Bitmap(Assets.getBitmapData("assets/loading_page.png"));
+
+		splashScreen.scaleX = splashScreen.scaleY = globalScale;
+
 		splashScreen.x = (Lib.current.stage.stageWidth - splashScreen.width) / 2;
 		splashScreen.y = (Lib.current.stage.stageHeight - splashScreen.height) / 2;
 		// splashScreen.scaleX = splashScreen.scaleY = .5;

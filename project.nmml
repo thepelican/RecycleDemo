@@ -4,7 +4,7 @@
 	<meta title="RecycleSmart" package="au.com.recyclesmart" version="1.0.0" company="RecycleSmart" />
 	<app main="Main" path="Export" file="AddingAnimation" />
 
-	<window width="640" height="1158" if="flash" />
+	<window width="840" height="1158" if="flash" />
 	<window width="320" height="480" if="html5" />
 	<window width="640" height="960" if="iphoneos" />
 
