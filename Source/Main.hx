@@ -508,6 +508,7 @@ class Main extends Sprite {
 		result.alpha = 0;
 		result.setScore(model.getCurrentBinType() == model.getCurrentItem().bin);
 
+		result.setTitle(model.getCurrentItem().message);
 		addChild(result);
 
 		Actuate.tween(result, 1.5, {alpha: 1}).ease(Linear.easeNone).onComplete(function() {

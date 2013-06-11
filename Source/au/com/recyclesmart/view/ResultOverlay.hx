@@ -13,6 +13,8 @@ import nme.text.TextFormatAlign;
 
 class ResultOverlay extends Sprite {
 
+	var returnValue:Bool;
+
 	public function new () {
 		super ();
 	}
@@ -25,6 +27,8 @@ class ResultOverlay extends Sprite {
 	}
 
 	public function setScore(hasScored:Bool) {
+		returnValue = hasScored;
+
 		var image = hasScored ? new Bitmap(Assets.getBitmapData("assets/ok.png")) : new Bitmap(Assets.getBitmapData("assets/cross.png"));
 		image.width = image.width / 2;
 		image.height = image.height / 2;
@@ -33,11 +37,15 @@ class ResultOverlay extends Sprite {
 		addChild(image);
 
 		var logo = new Bitmap(Assets.getBitmapData("assets/logo.png"));
-		logo.width = logo.width / 2;
-		logo.height = logo.height / 2;
+		logo.width = logo.width;
+		logo.height = logo.height;
 		logo.y = image.y - (logo.height * 2);
 		logo.x = (Lib.current.stage.stageWidth - logo.width) / 2;
 		addChild(logo);
+
+	}
+
+	public function setTitle(title:String){
 
 		var windTf:TextField = new TextField();
 		var format:TextFormat = new TextFormat();
@@ -47,16 +55,19 @@ class ResultOverlay extends Sprite {
 		format.align = TextFormatAlign.CENTER;
         windTf.defaultTextFormat = format;
 
-		windTf.text = "ciao adgdfg adrg sdgsd ad adrgadrh ad had had";
-		windTf.height = 300;
-		windTf.width = Lib.current.stage.stageWidth;
-		windTf.y = (Lib.current.stage.stageHeight - windTf.height) / 2;
+        if (returnValue = true){
+        	windTf.text = "WELL DONE!!!";
+        } else {
+        	windTf.text = title;
+        }
+		windTf.text = title;
+		windTf.height = 200;
+		windTf.width = Lib.current.stage.stageWidth-100;
+		windTf.y = 100;
 		windTf.x = (Lib.current.stage.stageWidth - windTf.width) / 2;
 		
 		addChild(windTf);
 
 		windTf.wordWrap = true;
-
-
 	}
 }

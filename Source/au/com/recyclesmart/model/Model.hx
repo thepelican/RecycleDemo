@@ -41,15 +41,15 @@ class Model {
     *   Later on we will probably load from an external file/api instead of hard-coding it
     */
     private function createItems():Void {
-        var aluminum_can:ThrowableVO = new ThrowableVO("aluminum_can", Bin.BLUE, 0xFF0000, "");
-        var bottle_reduced:ThrowableVO = new ThrowableVO("bottle-reduced", Bin.RED,0xFFFF00, "");
-        var bunch_of_leaves:ThrowableVO = new ThrowableVO("bunch-of-leaves", Bin.GREEN, 0x0000FF, "");
-        var carton_box:ThrowableVO = new ThrowableVO("carton-box", Bin.BLUE, 0x00FF00, "");
-        var empty_plastic_bottle:ThrowableVO = new ThrowableVO("empty-plastic-bottle", Bin.YELLOW, 0xFF0000, "");
-        var newspaper:ThrowableVO = new ThrowableVO("newspaper", Bin.BLUE,0xFFFF00, "");
-        var pannolini:ThrowableVO = new ThrowableVO("pannolini", Bin.RED, 0x0000FF, "");
-        var pizzabox:ThrowableVO = new ThrowableVO("pizzabox", Bin.RED, 0x00FF00, "");
-        var glass_bottle:ThrowableVO = new ThrowableVO("glass-bottle", Bin.RED,0xFFFF00, "");
+        var aluminum_can:ThrowableVO = new ThrowableVO("aluminum_can", Bin.BLUE, 0xFF0000, "Aluminium goes into the BLUE bin!!");
+        var bottle_reduced:ThrowableVO = new ThrowableVO("bottle-reduced", Bin.RED,0xFFFF00, "Bottle with lid goes into the RED bin!! You should separate them!!");
+        var bunch_of_leaves:ThrowableVO = new ThrowableVO("bunch-of-leaves", Bin.GREEN, 0x0000FF, "Leaves go into the GREEN bin!!");
+        var carton_box:ThrowableVO = new ThrowableVO("carton-box", Bin.BLUE, 0x00FF00, "Cardboard box goes into the BLUE bin!!");
+        var empty_plastic_bottle:ThrowableVO = new ThrowableVO("empty-plastic-bottle", Bin.YELLOW, 0xFF0000, "Plastic bottle goes into the YELLOW bin!!");
+        var newspaper:ThrowableVO = new ThrowableVO("newspaper", Bin.BLUE,0xFFFF00, "Newspaper goes into the BLUE bin!!");
+        var pannolini:ThrowableVO = new ThrowableVO("pannolini", Bin.RED, 0x0000FF, "Nappy goes into the RED bin!!");
+        var pizzabox:ThrowableVO = new ThrowableVO("pizzabox", Bin.RED, 0x00FF00, "Food stained pizza box goes into the RED bin!!");
+        var glass_bottle:ThrowableVO = new ThrowableVO("glass-bottle", Bin.YELLOW,0xFFFF00, "Glass bottle with no lid goes into the YELLOW bin!!");
 
         throwableItems = new Array<ThrowableVO>();
 
