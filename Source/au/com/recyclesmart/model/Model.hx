@@ -22,8 +22,8 @@ class Model {
 
         _dispatcher = CentralDispatcher.getInstance();
 
-        createDummyItems();
-        createDummyBin();
+        createItems();
+        createBin();
     }
 
     // Singleton handler
@@ -40,11 +40,11 @@ class Model {
     *   Creates 4 dummy items, one for each bin color.
     *   Later on we will probably load from an external file/api instead of hard-coding it
     */
-    private function createDummyItems():Void {
-        var dummyItem2:ThrowableVO = new ThrowableVO("pizza", Bin.RED, 0xFF0000);
-        var dummyItem1:ThrowableVO = new ThrowableVO("water-bottle", Bin.YELLOW,0xFFFF00);
-        var dummyItem3:ThrowableVO = new ThrowableVO("newspaper", Bin.BLUE, 0x0000FF);
-        var dummyItem4:ThrowableVO = new ThrowableVO("can", Bin.GREEN, 0x00FF00);
+    private function createItems():Void {
+        var dummyItem2:ThrowableVO = new ThrowableVO("pizza", Bin.RED, 0xFF0000, "");
+        var dummyItem1:ThrowableVO = new ThrowableVO("water-bottle", Bin.YELLOW,0xFFFF00, "");
+        var dummyItem3:ThrowableVO = new ThrowableVO("newspaper", Bin.BLUE, 0x0000FF, "");
+        var dummyItem4:ThrowableVO = new ThrowableVO("can", Bin.GREEN, 0x00FF00, "");
 
         throwableItems = new Array<ThrowableVO>();
 
@@ -58,8 +58,18 @@ class Model {
 
     // Our first bin will be YELLOW, but we can change it each time with the setter method
 
-    private function createDummyBin():Void {
-        _currentBinType = Bin.YELLOW;
+    public function createBin():Void {
+        var random:Float = Math.random();
+
+        if (random < 0.25) {
+               _currentBinType = Bin.YELLOW;
+        } else if (random > 0.25 && random <= 0.50) {
+              _currentBinType = Bin.RED;
+        } else if (random > 0.50 && random <= 0.75) {
+              _currentBinType = Bin.BLUE;
+        } else {
+             _currentBinType = Bin.GREEN;
+        }
     }
 
     // Accessor methods for the _throwableVOs
@@ -100,4 +110,5 @@ class Model {
     public function getCurrentBinType():String {
         return this._currentBinType;
     }
+
 }

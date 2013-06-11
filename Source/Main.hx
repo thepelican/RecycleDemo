@@ -20,6 +20,7 @@ import au.com.recyclesmart.eventbus.CentralDispatcher;
 import au.com.recyclesmart.events.AppEvent;
 import au.com.recyclesmart.model.Model;
 import au.com.recyclesmart.view.ThrowableItem;
+import au.com.recyclesmart.vo.Bin;
 
 class Main extends Sprite {
 
@@ -198,10 +199,20 @@ class Main extends Sprite {
 			removeChild(splashScreen);
 		});
 	}
+
 	//has to be managed
 	function createBinImage() {
 
-		containerBin = new Bitmap(Assets.getBitmapData("assets/yellow.png"));
+		if (model.getCurrentBinType() == Bin.YELLOW){
+			containerBin = new Bitmap(Assets.getBitmapData("assets/yellow.png"));
+		} else if (model.getCurrentBinType() == Bin.RED){
+			containerBin = new Bitmap(Assets.getBitmapData("assets/red.png"));
+		} else if (model.getCurrentBinType() == Bin.BLUE){
+			containerBin = new Bitmap(Assets.getBitmapData("assets/blue.png"));
+		} else {
+			containerBin = new Bitmap(Assets.getBitmapData("assets/green.png"));
+		}
+
 		containerBin.x = Lib.current.stage.stageWidth / 22 * 9;
 		containerBin.y = Lib.current.stage.stageHeight / 12 * 4;
 		containerBin.scaleX = containerBin.scaleY = globalScale;
@@ -228,6 +239,9 @@ class Main extends Sprite {
 	function onTouchUp(event) {
 
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
+
+		//remove the event lister that can cause the itme to change
+		dispatcher.removeEventListener(AppEvent.NEW_ITEM_SELECTED, changeItem);
 
 		//trace(event.stageX);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, onTouchUp);
@@ -497,15 +511,25 @@ class Main extends Sprite {
 		addChild(result);
 
 		Actuate.tween(result, 1.5, {alpha: 1}).ease(Linear.easeNone).onComplete(function() {
+
 			 Actuate.tween(result, 1.0, {alpha: 0}).ease(Linear.easeNone).delay(1.0).onComplete(function() {
 				removeChild(result);
 			 });
 		});
 
 		Timer.delay(callback(reset), 3000);
+		Timer.delay(callback(refreshBin), 3100);
+
+	}
+
+	function refreshBin() 
+	{
+		model.createBin();
+		createBinImage();
 	}
 
 	function reset() {
+
 		ballContainer.x = startX;
 		ballContainer.y = startY;
 		ballContainer.rotation = 0;
@@ -517,6 +541,7 @@ class Main extends Sprite {
 
 		});
 
+		dispatcher.addEventListener(AppEvent.NEW_ITEM_SELECTED, changeItem);
 
 		ballContainer.scaleX = ballContainer.scaleY = globalScale;
 	}

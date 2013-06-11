@@ -10,13 +10,16 @@ class ThrowableVO {
     public var type:String;
     public var iconPath:String;
     public var bin:String;
+    public var message:String;
+
     //temporanea
     public var bgColor:Int;
 
-    public function new(type:String, bin:String, bgColor:Int) {
+    public function new(type:String, bin:String, bgColor:Int, message:String) {
         this.bin = bin;
         this.type = type;
         this.iconPath = 'assets/' + type + '.png';
         this.bgColor = bgColor;
+        this.message = message;
     }
 }
