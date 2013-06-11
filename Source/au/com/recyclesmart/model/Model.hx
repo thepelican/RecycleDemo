@@ -41,17 +41,27 @@ class Model {
     *   Later on we will probably load from an external file/api instead of hard-coding it
     */
     private function createItems():Void {
-        var dummyItem2:ThrowableVO = new ThrowableVO("pizza", Bin.RED, 0xFF0000, "");
-        var dummyItem1:ThrowableVO = new ThrowableVO("water-bottle", Bin.YELLOW,0xFFFF00, "");
-        var dummyItem3:ThrowableVO = new ThrowableVO("newspaper", Bin.BLUE, 0x0000FF, "");
-        var dummyItem4:ThrowableVO = new ThrowableVO("can", Bin.GREEN, 0x00FF00, "");
+        var aluminum_can:ThrowableVO = new ThrowableVO("aluminum_can", Bin.BLUE, 0xFF0000, "");
+        var bottle_reduced:ThrowableVO = new ThrowableVO("bottle-reduced", Bin.RED,0xFFFF00, "");
+        var bunch_of_leaves:ThrowableVO = new ThrowableVO("bunch-of-leaves", Bin.GREEN, 0x0000FF, "");
+        var carton_box:ThrowableVO = new ThrowableVO("carton-box", Bin.BLUE, 0x00FF00, "");
+        var empty_plastic_bottle:ThrowableVO = new ThrowableVO("empty-plastic-bottle", Bin.YELLOW, 0xFF0000, "");
+        var newspaper:ThrowableVO = new ThrowableVO("newspaper", Bin.BLUE,0xFFFF00, "");
+        var pannolini:ThrowableVO = new ThrowableVO("pannolini", Bin.RED, 0x0000FF, "");
+        var pizzabox:ThrowableVO = new ThrowableVO("pizzabox", Bin.RED, 0x00FF00, "");
+        var glass_bottle:ThrowableVO = new ThrowableVO("glass-bottle", Bin.RED,0xFFFF00, "");
 
         throwableItems = new Array<ThrowableVO>();
 
-        throwableItems.push(dummyItem2);
-        throwableItems.push(dummyItem1);
-        throwableItems.push(dummyItem3);
-        throwableItems.push(dummyItem4);
+        throwableItems.push(aluminum_can);
+        throwableItems.push(bunch_of_leaves);
+        throwableItems.push(carton_box);
+        throwableItems.push(empty_plastic_bottle);
+        throwableItems.push(newspaper);
+        throwableItems.push(pannolini);
+        throwableItems.push(pizzabox);
+        throwableItems.push(bottle_reduced);
+        throwableItems.push(glass_bottle);
 
         _currentItem = throwableItems[1];
     }

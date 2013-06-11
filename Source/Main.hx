@@ -104,7 +104,7 @@ class Main extends Sprite {
 		ballContainer.addEventListener(MouseEvent.MOUSE_DOWN, onTouchDown);
 
 		dispatcher.addEventListener(AppEvent.NEW_ITEM_SELECTED, changeItem);
-		splashScreen();
+		// splashScreen();
 
 	}
 

@@ -84,7 +84,7 @@ class ItemScrollBar extends Sprite {
 
 	function drawScrollingPanel(w:Float, h:Float) {
 		scrollingPanel = new Sprite();
-		scrollingPanel.graphics.beginFill(0xcccccc, 1);
+		scrollingPanel.graphics.beginFill(0x0000000, 1);
 		scrollingPanel.graphics.drawRect(this.padding, this.padding, w * 2, h - padding * 2);
 		scrollingPanel.graphics.endFill();
 		addChild(scrollingPanel);
